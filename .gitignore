@@ -1,3 +1,4 @@
+# TeX compilation incidental files
 *.aux
 *.fls
 *.lof
@@ -5,5 +6,9 @@
 *.lot
 *.toc
 *.fdb_latexmk
+*.out
+*.syntec.gz
 
 *.pdf
+.Rproj.user
+.Rhistory

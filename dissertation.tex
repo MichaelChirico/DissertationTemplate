@@ -20,6 +20,11 @@
 \usepackage{booktabs}
 \usepackage{titlesec}
 \usepackage{chngcntr}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{multirow}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1\linewidth}}
+\usepackage{rotating}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% Document setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -58,11 +63,11 @@
 %%%%%% Definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\def\thetitle{TITLE}
-\def\theauthor{Name}
-\def\theadvisor{Advisor}
-\def\THEAUTHOR{NAME}
-\def\THEADVISOR{ADVISER}
+\def\thetitle{ESSAYS ON THE ECONOMICS OF EDUCATION}
+\def\theauthor{Michael Chirico}
+\def\theadvisor{Holgier Sieg}
+\def\THEAUTHOR{MICHAEL CHIRICO}
+\def\THEADVISOR{HOLGER SIEG}
 \def\theyear{2017}
 
 \begin{document}
@@ -109,11 +114,11 @@
     \newpage
 
     \chapter{Title of the chapter}
-    \input{content/chapter1}
+    \input{content/sail}
     \newpage
 
     \chapter{Title of the chapter}
-    \input{content/chapter2}
+    %\input{content/wisconsin}
     \newpage
 
     % appendices
@@ -122,6 +127,6 @@
 
     % bibliography
     \bibliographystyle{plainnat}
-    \bibliography{BibFile.bib}
+    \bibliography{references.bib}
 
 \end{document}
