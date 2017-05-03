@@ -83,13 +83,15 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{May 02, 2017}
+  \date{May 03, 2017}
 
 \usepackage{theapa}
 \usepackage{array}
 \usepackage{multirow}
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1\linewidth}}
 \usepackage{rotating}
+\usepackage{verbatim}
+\newcommand{\TAG}[1]{}
 
 \begin{document}
 \maketitle
@@ -107,6 +109,8 @@ districts and out of local public schools.
 \end{abstract}
 
 \section{Introduction}\label{introduction}
+
+\TAG{BEGIN_INTRO}
 
 Good teachers have large impacts on student achievement\footnote{See,
   e.g., Rockoff (\protect\hyperlink{ref-rockoff}{2004}).}. It is
@@ -161,7 +165,11 @@ population centers in Wisconsin is likely to be reflected in
 considerably different preferences among local residents for various
 aspects of potential teaching positions.
 
+\TAG{END_INTRO}
+
 \section{Literature Review}\label{literature-review}
+
+\TAG{BEGIN_BODY}
 
 Because the potential policy implications of turnover in the teaching
 profession (from human capital and equity/distributional perspectives
@@ -1209,6 +1217,8 @@ whether \emph{high-quality} teachers have patterns of mobility which
 resemble that of the teaching population as a whole, or whether
 heterogeneity in their preferences can be used to devise appropriate
 policies.
+
+\TAG{END_BODY}
 
 \section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
