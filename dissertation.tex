@@ -25,6 +25,17 @@
 \usepackage{multirow}
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1\linewidth}}
 \usepackage{rotating}
+\usepackage{theapa}
+
+\newtheorem{fact}{Stylized Fact}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% Document setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -63,7 +74,7 @@
 %%%%%% Definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\def\thetitle{ESSAYS ON THE ECONOMICS OF EDUCATION}
+\def\thetitle{ESSAYS IN PUBLIC ECONOMICS}
 \def\theauthor{Michael Chirico}
 \def\theadvisor{Holgier Sieg}
 \def\THEAUTHOR{MICHAEL CHIRICO}
@@ -119,6 +130,10 @@
 
     \chapter{Title of the chapter}
     \input{content/turnover}
+    \newpage
+
+    \chapter{Procrastination and Property Tax Compliance: Evidence from a Field Experiment}
+    \input{content/procrastination}
     \newpage
 
     % appendices

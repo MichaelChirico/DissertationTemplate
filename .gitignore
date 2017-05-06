@@ -7,7 +7,7 @@
 *.toc
 *.fdb_latexmk
 *.out
-*.syntec.gz
+*.synctex.gz
 
 *.pdf
 .Rproj.user
