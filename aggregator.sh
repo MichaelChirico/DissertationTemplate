@@ -13,6 +13,10 @@ mv full_chapters/references.bib full_chapters/references_turnover.bib
 cp "$ch1wd"/figures/* ./figures
 
 # EXTRACT CHAPTER 2
+ch2wd='/home/michael/Desktop/research/SAIL_maynard_et_al'
+cp "$ch2wd"/sail_paper.tex "$ch2wd"/references.bib ./full_chapters
+mv full_chapters/references.bib full_chapters/references_sail.bib
+cp "$ch2wd"/figures/* ./figures
 
 # EXTRACT CHAPTER 3
 ch3wd='/home/michael/Desktop/research/Sieg_LMI_Real_Estate_Delinquency/round_two'

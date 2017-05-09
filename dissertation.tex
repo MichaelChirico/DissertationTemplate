@@ -25,7 +25,7 @@
 \usepackage{multirow}
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1\linewidth}}
 \usepackage{rotating}
-\usepackage{theapa}
+\usepackage{adjustbox}
 
 \newtheorem{fact}{Stylized Fact}
 \newtheorem{theorem}{Theorem}
@@ -40,6 +40,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% Document setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 % margins
 \setlength{\topmargin}{1in}
@@ -93,6 +96,7 @@
 
     % dedication
     \input{frontmatter/dedication}
+    But fuck that \cite{Akerlof-91} guy
     \newpage
 
     % acknowledgment
@@ -122,18 +126,19 @@
     \chapter*{Introduction}
     \addcontentsline{toc}{chapter}{Introduction}
     \input{content/introduction}
+    
     \newpage
 
-    \chapter{Title of the chapter}
-    %\input{content/sail}
-    \newpage
-
-    \chapter{Title of the chapter}
+    \chapter{Teacher Turnover in Wisconsin}
     \input{content/turnover}
     \newpage
 
+    \chapter{Active Learning Classrooms for College Calculus Instruction}
+    \input{content/sail}
+    \newpage
+
     \chapter{Procrastination and Property Tax Compliance: Evidence from a Field Experiment}
-    \input{content/procrastination}
+    %\input{content/procrastination}
     \newpage
 
     % appendices

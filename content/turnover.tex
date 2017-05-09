@@ -1,3 +1,4 @@
+\section{Literature Review}
 
 Because the potential policy implications of turnover in the teaching
 profession (from human capital and equity/distributional perspectives
@@ -552,7 +553,7 @@ Teacher Experience & Remain in Same School & Change Schools Within District & Sw
   4-6 years & 86.6 & 5.6 & 3.3 & 4.5 & 37,770 \\ 
   7-11 years & 90.6 & 5.0 & 1.8 & 2.6 & 54,623 \\ 
   12-30 years & 92.4 & 4.1 & 0.6 & 2.9 & 129,002 \\ 
-  >30 years & 80.3 & 6.4 & 1.1 & 12.2 & 20,360 \\ 
+  $>$30 years & 80.3 & 6.4 & 1.1 & 12.2 & 20,360 \\ 
   All & 88.6 & 5.1 & 2.0 & 4.3 & 282,797 \\ 
    \hline
 \end{tabular}
@@ -965,6 +966,7 @@ only tend to select on the latter characteristic).
 
 \begin{table}[htbp]
 \centering
+\begin{adjustbox}{width=\textwidth,totalheight=.9\textheight,keepaspectratio}
 \begin{tabular}{p{.3\textwidth}p{.15\textwidth}p{.15\textwidth}p{.15\textwidth}}
   \hline
 Quartile of Distribution & Probability Teachers Move to New School within District & Probability Teachers Move to New District & Probability Teachers Exit Public Schools \\ 
@@ -996,7 +998,8 @@ Percent Hispanic & & & \\
   \quad Lowest & 4.0\% & 2.3\% & 3.7\% \\ 
    \hline
 \end{tabular}
-\caption{School Average Transition Rates by Distribution of Residual Teacher Salary and Student Demographic Characteristics (data weighted by number of teachers in school)} 
+\end{adjustbox}
+\caption{\scriptsize{School Average Transition Rates by Distribution of Residual Teacher Salary and Student Demographic Characteristics (data weighted by number of teachers in school)}}
 \label{tbl:change_by_quartile}
 \end{table}
 
@@ -1034,12 +1037,13 @@ observe the opposite pattern, which is difficult to explain \emph{prima
 facie}, and suggests the presence of confounding factors distorting the
 patterns away from what should be expected.
 
-\begin{sidewaystable}
+\begin{table}
 \begin{center}
+\begin{adjustbox}{width=\textwidth,totalheight=.85\textheight,keepaspectratio}
 \begin{tabular}{l c c c c c }
 \hline
  & \multicolumn{4}{c}{Teacher Experience} \\ \cline{2-6}
- & 1-3 years & 4-6 years & 7-11 years & 12-30 years & >30 years \\
+ & 1-3 years & 4-6 years & 7-11 years & 12-30 years & $>$30 years \\
 \hline
 First year base salary (log)                & $0.03$        & $-0.09^{**}$  & $-0.04^{*}$   & $0.01$       & $-0.12$     \\
                                             & $(0.03)$      & $(0.03)$      & $(0.02)$      & $(0.01)$     & $(0.06)$    \\
@@ -1068,10 +1072,12 @@ Observations                                & 33,108         & 30,244         & 
 \hline
 \multicolumn{6}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Estimated Effects of Starting Teacher Salary and Student Demographic Characteristics on the Probability that Teachers Leave School Districts, by Experience (linear probability models; Huber-White standard  errors in parentheses)}
+\end{adjustbox}
+\caption{\scriptsize{Estimated Effects of Starting Teacher Salary and Student Demographic Characteristics on the Probability that Teachers Leave School Districts, by Experience (linear probability models; Huber-White standard errors in parentheses)}}
 \label{tbl:reg_lpm}
 \end{center}
-\end{sidewaystable}
+
+\end{table}
 
 Having identified some key patterns in moments of the data, we now move
 on to try and separate the confounding effects of each of these and
@@ -1116,12 +1122,13 @@ assortative matching on ethnicity among districts in Wisconsin (though
 the patterns for whites differ sharply from those of nonwhites, the
 patterns for black and Hispanic teachers are hard to distinguish).
 
-\begin{sidewaystable}
+\begin{table}
 \begin{center}
+\begin{adjustbox}{width=\textwidth,totalheight=.85\textheight,keepaspectratio}
 \begin{tabular}{l c c c c c }
 \hline
  & \multicolumn{4}{c}{Teacher Experience} \\ \cline{2-6}
- & 1-3 years & 4-6 years & 7-11 years & 12-30 years & >30 years \\
+ & 1-3 years & 4-6 years & 7-11 years & 12-30 years & $>$30 years \\
 \hline
 First year base salary (log)                & $0.01$       & $-0.13^{***}$ & $-0.05^{**}$ & $0.00$       & $-0.17^{**}$ \\
                                             & $(0.03)$     & $(0.04)$      & $(0.02)$     & $(0.01)$     & $(0.07)$     \\
@@ -1150,10 +1157,11 @@ Observations                                & 33,108        & 30,244         & 4
 \hline
 \multicolumn{6}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Estimated Effects of Starting Teacher Salary and Student Demographic Characteristics on the Probability that Teachers Leave School Districts with District Fixed Effects, by Experience (linear probability models; Huber-White standard errors in parentheses)}
+\end{adjustbox}
+\caption{\scriptsize{Estimated Effects of Starting Teacher Salary and Student Demographic Characteristics on the Probability that Teachers Leave School Districts with District Fixed Effects, by Experience (linear probability models; Huber-White standard errors in parentheses)}}
 \label{tbl:reg_lpm_fe}
 \end{center}
-\end{sidewaystable}
+\end{table}
 
 To account in a rudimentary way for district-specific hiring policies,
 HKR move on to their Table 8 which repeats Table 7 with district fixed
@@ -1173,8 +1181,9 @@ between student characteristics and exit probability for white teachers
 can be chalked up to district-to-district heterogeneity in preferences
 or hiring policies.
 
-\begin{sidewaystable}
+\begin{table}
 \begin{center}
+\begin{adjustbox}{width=\textwidth,totalheight=.9\textheight,keepaspectratio}
 \begin{tabular}{l c c c c }
 \hline
  & \multicolumn{4}{c}{Teacher Experience} \\ \cline{2-5}
@@ -1209,10 +1218,11 @@ II. Exit Teaching                               &               &               
 \hline
 \multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 \end{tabular}
-\caption{Multinomial Logit Estimated Effects of Teacher Salary and Student Demographic Characteristics on the Probabilities That Teachers Switch School Districts or Exit Teaching Relative to Remaining in Same District}
+\end{adjustbox}
+\caption{\scriptsize{Multinomial Logit Estimated Effects of Teacher Salary and Student Demographic Characteristics on the Probabilities That Teachers Switch School Districts or Exit Teaching Relative to Remaining in Same District}}
 \label{tbl:reg_mlogit}
 \end{center}
-\end{sidewaystable}
+\end{table}
 
 Finally, the conflation of switching districts and exiting teaching may
 mask important heterogeneity between these two choices. To separate
@@ -1247,43 +1257,3 @@ to remain in high-minority districts. Subsidized lunch eligibility's
 strong effect observed in the combined specification is found here to be
 concentrated more among those leaving teaching than those changing
 districts.
-
-\section{Conclusion}\label{conclusion}
-
-That salary incentives appear to play such a limited role in driving
-teacher churn is bound at first glance to be a disappointment for
-policymakers. The most powerful predictors of turnover in educators in
-Wisconsin are all basically beyond the control of administrators, who
-have no readily-manipulated direct lever for assigning students to
-schools\footnote{There is evidence (e.g., Richards
-  \protect\hyperlink{ref-richards}{2014}) that catchment area
-  manipulation (educational gerrymandering) is being used by some
-  schools to select their student populations, but the equilibrium
-  outcome of the strategic interactions of districts competing for the
-  most ``desirable'' students is far from clear.}. HKR found school
-quality (as measured by average standardized test performance) to be of
-key importance for attracting/retaining teachers, but we found no
-evidence that student proficiency (as measured by attainment levels on
-standardized tests) is a factor in the turnover decision for Wisconsin
-teachers. Regardless, manipulating school performance is famously
-difficult\footnote{See, for example, the widespread cheating scandals on
-  standardized tests by teachers in Chicago (Jacob and Levitt
-  \protect\hyperlink{ref-jacob}{2003}), Atlanta, and Philadelphia as an
-  example of the lengths professionals feel they need to go to effect
-  change in testing outcomes.}, and is in fact the original goal
-administrators often have in mind when they turn to labor market
-policies in the first place, so that telling administrators they can
-improve teacher retention by improving student performance amounts
-essentially to circular reasoning.
-
-The upside is that this paper is far from settling the debate about
-welfare-maximizing teacher turnover policies. Limitations in our data
-prevent us from associating to teachers anything but crude measures of
-their productivity; measures such as experience, certification, and race
-are famously poor predictors of teacher quality measures such as
-value-added. We are thus unable to provide any input to the question of
-whether \emph{high-quality} teachers have patterns of mobility which
-resemble that of the teaching population as a whole, or whether
-heterogeneity in their preferences can be used to devise appropriate
-policies.
-

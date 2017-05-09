@@ -7,8 +7,326 @@
         \let\protect\l@section\protect\l@subsection
     }
 
-    \chapter{Appendix to Chapter 3}
+\chapter{Appendix to Chapter 1}
 
-    \include{appendix_procrastination}
+DPI WISEstaff data does not include a longitudinal identifier for
+teachers, so we resorted to an alternative approach to matching teachers
+from year to year. The essence of this algorithm relies on the inclusion
+of four fields in the DPI data -- \texttt{first\_name},
+\texttt{last\_name}, \texttt{nee} (former last name) and
+\texttt{birth\_year}. By matching teacher using these identifiers, it is
+possible to construct with high accuracy a panel of teachers from simple
+teacher cross-sections\footnote{The code for this process was done using
+  R and especially helped by the \texttt{data.table} package (Dowle and
+  Srinivasan \protect\hyperlink{ref-dowle}{2017}). The code to reproduce
+  this entire project can be found at
+  \url{https://github.com/MichaelChirico/wisconsin_teachers}. The script
+  for the algorithm is \texttt{teacher\_match\_and\_clean.R}. The
+  \texttt{README} file gives steps for full reproduction, including
+  retrieving the raw data.}.
+
+\subsection{Step 0: Pre-Processing}\label{step-0-pre-processing}
+
+Prior to beginning the matching process, a number of steps are taken to
+improve the quality of the raw data. The first is to incorporate as many
+of the errata mentioned in Public Instruction
+(\protect\hyperlink{ref-dpi_errata}{2017}\protect\hyperlink{ref-dpi_errata}{a})
+as possible. All name variables are then converted to lower case, after
+which we extract maiden names (identified for those missing a
+DPI-supplied entry in \texttt{nee} as the part of the
+\texttt{last\_name} field that appears in between parentheses or
+surrounding a hyphen or forward slash). Generally, it appears the maiden
+name comes in the data \emph{before} the hyphen, but we create the
+\texttt{nee2} field to identify potential matches to the post-hyphen
+name as well. A search was done of the data for irregular characters
+(punctuation or numbers) which allowed several obvious typos to be
+resolved (e.g., \texttt{l0is\ a\ dewey} was easy to resolve as being
+\texttt{lois\ a\ dewey}), and this is implemented next.
+
+Next, we create a ``clean'' version of the name fields which strips away
+all whitespace, initials (lone letters), and punctuation. At this stage,
+all observations which identically match another in the same year from
+the viewpoint of the algorithm -- namely, those that match exactly
+another observation on the cleaned first and last names and year of
+birth -- are removed from the data since it would be impossible to tell
+such teachers apart. A more ambitious treatment would attempt to use
+other cues found in the duplicated records (ethnicity, subject/position
+cues, etc.) to separate such teachers, but the marginal cost of doing so
+was found to exceed the potential benefit considerably for the exercise
+at hand (recall that only 0.7\% of total observations are lost in this
+fashion). Finally, teachers in the first year of data (1994-95) are
+assigned an ID starting from 1 using the within-year identifier provided
+by DPI.
+
+\subsection{Steps 1-21: Matching}\label{steps-1-21-matching}
+
+The algorithm proceeds by iterating over years of the data. In each year
+\(Y\), matches are found serially by progressively adjusting the
+criteria for considering two observations to be from the same teacher as
+follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Match anyone who stayed in the same school -- i.e., match any teacher
+  found in a year \(Y'<Y\) with the same \texttt{first\_name},
+  \texttt{last\_name}, and \texttt{birth\_year} at the same
+  \texttt{district} and \texttt{school}.
+\item
+  Find within-district switchers -- those who match on all but the
+  \texttt{school} field from Step 1.
+\item
+  Find out-of-district switchers -- those who match on all but the
+  \texttt{district} field from Step 2.
+\item
+  Find teachers that appear to have been married, but have not moved --
+  their \texttt{nee} field in \(Y\) is matched to the
+  \texttt{last\_name} fields in \(Y'<Y\), but otherwise the fields from
+  Step 1 are all matched. We create a flag for teachers matched in this
+  fashion called \texttt{married}.
+\item
+  Repeat Step 2 for those who appear to have married.
+\item
+  Repeat Step 3 for those who appear to have married. 7-9. Repeat Steps
+  4-6 using the \texttt{nee2} field instead of \texttt{nee}. 10-18.
+  Repeat Steps 1-9 using the ``cleaned'' version of the first name field
+  that had non-alphabetic characters removed,
+  \texttt{first\_name\_clean}. We create a flag for teachers matched in
+  this fashion called \texttt{mismatch\_inits}.
+\item
+  Match individuals in the same school assigned to the same position
+  (identified in \texttt{position\_code}) but with different years of
+  birth to overcome potential noise in year of birth (most commonly, the
+  year of birth is missing in some years). We create a flag for teachers
+  matched in this fashion called \texttt{mismatch\_yob}.
+\item
+  Match individuals in the same \emph{district} assigned to the same
+  position but with different years of birth. We do not extend this
+  logic to find district switchers since the potential for erroneous
+  match assignment in such a case is too great, and we neglect to extend
+  the algorithm to use other cues from the data to facilitate matching
+  in such cases.
+\item
+  Assign new IDs to all teachers in \(Y\) not matched in the first 20
+  steps, incrementing from the highest ID recorded thus far.
+\end{enumerate}
+
+To help ensure we are matching to the most important observation of each
+teacher, matching is always done to a teacher's highest-FTE observation
+within a year (particularly important for Steps 19-20). Further, it is
+sometimes the case that a given tuple of search keys matches more than
+one teacher in the prior data; if so, these rows are simply ignored for
+that step and such a teacher will go unmatched unless they are uniquely
+pinned down in a subsequent step.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{figures/match_step-1.pdf}
+\caption{\label{fig:step}Frequency of Matching by Step}
+\end{figure}
+
+Figure \ref{fig:step} Shows that teachers are most commonly matched in
+the first three steps, meaning data fidelity issues are not \emph{per
+se} devastating. The real benefits of the algorithm are in the
+subsequent steps, as a result of which an additional 33,538 teachers are
+matched than would have been if only the original first and last name
+fields as found in the raw data were used.
+
+\subsection{Step 22: Post-Processing}\label{step-22-post-processing}
+
+The panels implied by the matched IDs created by the algorithm still
+have a substantial amount of data quality issues which we can only
+address once teachers' multiple observations are associated, mainly
+having to do with instability in certain observable characteristics
+which should be constant over time. First, we cascade forward maiden
+names (if a teacher has non-missing \texttt{nee} in a period \(Y\) and
+it becomes missing in \(Y'>Y\), we replace it in \(Y'\) with its value
+in \(Y\)); the same is done for the certification field,
+\texttt{highest\_degree} (just as a teacher cannot erase marriage from
+their past, so can they not make a degree disappear).
+
+Next, we correct instability in the \texttt{ethnicity} (and
+\texttt{gender}) fields when possible according to three steps: 1) it is
+sometimes missing, in which case we simply overwrite it with the other
+values found for that teacher; 2) at least 70\% of a teacher's
+observations use the same ethnicity (or gender); or 3) there are at
+least five people that share a last name with an ethnicity-ambiguous
+teacher, at least 70\% of whom have one ethnicity (or gender), the idea
+being that names like Xu or Gutierrez are strongly associated with a
+particular ethnicity. This type of correction is uncommon enough not to
+warrant an appeal to a more sophisticated approach commonly found in
+natural language processing applications.
+
+Lastly, we synergize the year of birth field for those matched in Steps
+19 or 20 by assigning the one that appears most frequently for each
+teacher; in the case of ties, we use a regression-to-the-mean-type logic
+and assign the year which brings the teacher closer to the median age
+observed in the data. More data-driven approaches (conditioning the
+target median on the teacher's employer, position, year in the data,
+etc.) were again eschewed for expediency.
+
+\subsection{\texorpdfstring{Validity Check:
+\texttt{file\_number}}{Validity Check: file\_number}}\label{validity-check-file_number}
+
+Starting in the 2011-12 release, the DPI data begins to consistently
+record a field called \texttt{file\_number} for teachers which generally
+acts as a time-consistent ID (from verbiage gleaned from Public
+Instruction
+\protect\hyperlink{ref-dpi_errata}{2017}\protect\hyperlink{ref-dpi_errata}{a},
+it appears this corresponds to a teaching license number). We looked for
+instances of multiple file numbers and are content that the algorithm is
+performing well -- only 78 teacher IDs were found to be associated with
+more than one \texttt{file\_number}, with almost all of them having been
+matched on Steps 1 - 3 (what should be the highest-accuracy steps).
+Given a number of apparent transcription mistakes (i.e.,
+\texttt{file\_number} differing by one digit in some years) and that the
+\texttt{file\_number} does appear to change on occasion, even these 78
+could be an overstatement of the number of incorrectly matched
+individuals.
+
+\chapter{Appendix to Chapter 3}
+
+The appendix contains Tables \ref{balance2} and \ref{sh_lpm_mult}
+which summarizes additional balance tests and robustness analyses
+using all owners (including multiple property owners).Tables
+\ref{sh_logit} and \ref{sh_logit_rob} report estimates based on Logit
+models for unary owners and unary plus multiple owners.
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+
+
+\begin{table}[htbp]
+\caption{Robustness Analysis: Relative to Reminder (All Owners)}\label{sh_lpm_mult}
+\begin{center}
+\begin{tabular}{l c c c c }
+\hline
+ & \multicolumn{2}{c}{Ever Paid} & \multicolumn{2}{c}{Paid in Full} \\
+ & One Month & Three Months & One Month & Three Months \\
+Reminder     & $34.9$ & $56.5$ & $23.9$ & $41.8$ \\
+\hline
+Lien         & $4.8^{***}$  & $4.7^{***}$  & $3.3^{***}$  & $4.0^{***}$  \\
+             & $(1.3)$      & $(1.3)$      & $(1.2)$      & $(1.3)$      \\
+Sheriff      & $3.4^{***}$  & $4.6^{***}$  & $2.3^{**}$   & $3.6^{***}$  \\
+             & $(1.3)$      & $(1.3)$      & $(1.2)$      & $(1.3)$      \\
+Neighborhood & $-1.0$       & $-0.8$       & $-1.2$       & $-0.4$       \\
+             & $(1.3)$      & $(1.3)$      & $(1.2)$      & $(1.3)$      \\
+Community    & $-0.4$       & $-1.4$       & $-0.6$       & $-0.2$       \\
+             & $(1.3)$      & $(1.3)$      & $(1.2)$      & $(1.3)$      \\
+Peer         & $0.3$        & $-0.8$       & $0.4$        & $0.8$        \\
+             & $(1.3)$      & $(1.3)$      & $(1.2)$      & $(1.3)$      \\
+Duty         & $-1.3$       & $-0.2$       & $-1.0$       & $-0.8$       \\
+             & $(1.3)$      & $(1.3)$      & $(1.2)$      & $(1.3)$      \\
+\hline
+Num. obs.    & 19333        & 19333        & 19333        & 19333        \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$, $^{**}p<0.05$, $^*p<0.1$. Reminder values in levels; remaining figures relative to this}}
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{sidewaystable}[htbp]
+\centering
+\caption{Balance on Observables}
+\label{balance2}
+\begin{tabular}{lrrrrrrrc}
+\hline
+\multicolumn{9}{c}{Unary Owners} \\
+  \hline
+Variable & Reminder & Lien & Sheriff & Neighborhood & Community & Peer & Duty & $p$-value \\ 
+   \hline
+Amount Due (June) & \$1,256 & \$1,280 & \$1,315 & \$1,289 & \$1,290 & \$1,280 & \$1,299 & 0.98 \\ 
+  Assessed Property Value & \$158,370 & \$130,642 & \$134,334 & \$159,079 & \$130,265 & \$130,936 & \$165,617 & 0.46 \\ 
+  \# Owners & 2,419 & 2,429 & 2,416 & 2,387 & 2,441 & 2,416 & 2,432 & 0.99 \\ 
+  \hline
+\multicolumn{9}{c}{Unary and Multiple Owners} \\
+  \hline
+Variable & Reminder & Lien & Sheriff & Neighborhood & Community & Peer & Duty & $p$-value \\ 
+   \hline
+Amount Due (June) & \$1,593 & \$1,593 & \$1,590 & \$1,589 & \$1,583 & \$1,572 & \$1,583 & 1 \\ 
+  Assessed Property Value & \$180,664 & \$155,499 & \$157,398 & \$180,172 & \$153,528 & \$155,438 & \$183,991 & 0.48 \\ 
+  \% with Unary Owner & 87.6 & 88.0 & 87.5 & 86.4 & 88.4 & 87.5 & 88.1 & 0.42 \\ 
+  \% Overlap with Holdout & 3.69 & 3.44 & 3.29 & 3.73 & 3.40 & 3.55 & 3.40 & 0.97 \\ 
+  \# Properties per Owner & 1.27 & 1.26 & 1.26 & 1.32 & 1.26 & 1.26 & 1.26 & 0.67 \\ 
+  \# Owners & 2,762 & 2,761 & 2,762 & 2,762 & 2,762 & 2,762 & 2,762 & 1 \\ 
+  \hline
+\multicolumn{9}{l}{\scriptsize{$p$-values in rows 1-5 are $F$-test $p$-values from regressing each variable on treatment dummies. A $\chi^2$ test was used for the count of owners.}} \\
+\end{tabular}
+\end{sidewaystable}
+
+
+\begin{table}[htbp]
+\caption{Short-Term Logistic Model Estimates (Unary Owners)}\label{sh_logit}
+\begin{center}
+\begin{adjustbox}{width=\textwidth,totalheight=.9\textheight,keepaspectratio}
+\begin{tabular}{l c c c c }
+\hline
+ & \multicolumn{2}{c}{Ever Paid} & \multicolumn{2}{c}{Paid in Full} \\
+ & One Month & Three Months & One Month & Three Months \\
+Holdout        & $-0.8$ & $0.1$       & $-1.2$ & $-0.4$ \\
+\hline
+Reminder        & $0.2^{***}$  & $0.2^{***}$ & $0.1^{*}$    & $0.1^{**}$   \\
+               & $(0.1)$      & $(0.1)$     & $(0.1)$      & $(0.1)$      \\
+Lien           & $0.4^{***}$  & $0.4^{***}$ & $0.3^{***}$  & $0.3^{***}$  \\
+               & $(0.1)$      & $(0.1)$     & $(0.1)$      & $(0.1)$      \\
+Sheriff        & $0.3^{***}$  & $0.4^{***}$ & $0.2^{***}$  & $0.3^{***}$  \\
+               & $(0.1)$      & $(0.1)$     & $(0.1)$      & $(0.1)$      \\
+Neighborhood   & $0.1$        & $0.1^{*}$   & $-0.0$       & $0.1$        \\
+               & $(0.1)$      & $(0.1)$     & $(0.1)$      & $(0.1)$      \\
+Community      & $0.2^{***}$  & $0.1^{*}$   & $0.1$        & $0.1^{*}$    \\
+               & $(0.1)$      & $(0.1)$     & $(0.1)$      & $(0.1)$      \\
+Peer           & $0.2^{***}$  & $0.1^{**}$  & $0.1$        & $0.1^{**}$   \\
+               & $(0.1)$      & $(0.1)$     & $(0.1)$      & $(0.1)$      \\
+Duty           & $0.1^{*}$    & $0.1^{**}$  & $0.0$        & $0.1$        \\
+               & $(0.1)$      & $(0.1)$     & $(0.1)$      & $(0.1)$      \\
+\hline
+AIC            & 24493.1      & 26068.9     & 21605.6      & 26093.5      \\
+BIC            & 24556.0      & 26131.7     & 21668.4      & 26156.3      \\
+Log Likelihood & -12238.6     & -13026.4    & -10794.8     & -13038.7     \\
+Deviance       & 24477.1      & 26052.9     & 21589.6      & 26077.5      \\
+Num. obs.      & 19028        & 19028       & 19028        & 19028        \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.01$, $^{**}p<0.05$,
+    $^*p<0.1$. Holdout values in levels; remaining figures relative to
+    this}}
+\end{tabular}
+\end{adjustbox}
+\end{center}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Logit Estimates Including Multiple Owners}\label{sh_logit_rob}
+\begin{center}
+\begin{adjustbox}{width=\textwidth,totalheight=.9\textheight,keepaspectratio}
+\begin{tabular}{l c c c c }
+\hline
+ & \multicolumn{2}{c}{All Owners} & \multicolumn{2}{c}{Unary Owners} \\
+ & One Month & Three Months & One Month & Three Months \\
+\hline
+Lien           & $0.21^{***}$ & $0.20^{***}$ & $0.23^{***}$ & $0.22^{***}$ \\
+               & $(0.06)$     & $(0.05)$     & $(0.06)$     & $(0.06)$     \\
+Sheriff        & $0.15^{**}$  & $0.19^{***}$ & $0.16^{**}$  & $0.20^{***}$ \\
+               & $(0.06)$     & $(0.05)$     & $(0.06)$     & $(0.06)$     \\
+Neighborhood   & $-0.05$      & $-0.03$      & $-0.09$      & $-0.05$      \\
+               & $(0.06)$     & $(0.05)$     & $(0.06)$     & $(0.06)$     \\
+Community      & $-0.02$      & $-0.06$      & $0.00$       & $-0.04$      \\
+               & $(0.06)$     & $(0.05)$     & $(0.06)$     & $(0.06)$     \\
+Peer           & $0.01$       & $-0.03$      & $0.01$       & $-0.02$      \\
+               & $(0.06)$     & $(0.05)$     & $(0.06)$     & $(0.06)$     \\
+Duty           & $-0.06$      & $-0.01$      & $-0.06$      & $-0.01$      \\
+               & $(0.06)$     & $(0.05)$     & $(0.06)$     & $(0.06)$     \\
+\hline
+AIC            & 25179.24     & 26349.91     & 21922.44     & 23174.00     \\
+BIC            & 25234.33     & 26405.00     & 21976.61     & 23228.16     \\
+Log Likelihood & -12582.62    & -13167.95    & -10954.22    & -11580.00    \\
+Deviance       & 25165.24     & 26335.91     & 21908.44     & 23160.00     \\
+Num. obs.      & 19333        & 19333        & 16940        & 16940        \\
+\hline
+\multicolumn{5}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.05$, $^*p<0.1$}}
+\end{tabular}
+\end{adjustbox}
+\end{center}
+\end{table}
 
 \end{appendices}

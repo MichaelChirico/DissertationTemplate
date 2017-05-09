@@ -1,13 +1,6 @@
 # TeX compilation incidental files
-*.aux
-*.fls
-*.lof
-*.log
-*.lot
-*.toc
-*.fdb_latexmk
-*.out
-*.gz
+dissertation*
+!dissertation.tex
 
 *.pdf
 .Rproj.user
