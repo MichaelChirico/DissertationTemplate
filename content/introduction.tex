@@ -1,7 +1,301 @@
-\cite{Akerlof-91} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper nulla a dolor rhoncus consequat. Curabitur sed pretium urna. Vestibulum felis ligula, tempor id porta vitae, egestas quis sem. Donec imperdiet diam a justo ullamcorper, ut finibus eros efficitur. Proin eget massa sit amet lectus tempus hendrerit in vitae arcu. Nunc rhoncus libero convallis urna posuere, id porttitor magna volutpat. Nunc rhoncus, lorem at fringilla suscipit, elit nibh sollicitudin ante, in accumsan est felis at velit.
+This work is dedicated to understanding and applying a wide range of topics in public economics. In three chapters, I explore public elementary and high school teachers' revealed preferences for pecuniary and non-pecuniary aspects of compensation; the potential for novel technology-assisted pedagogical modes to strengthen the STEM pipeline at American undergraduate institutions; and the efficacy of low-cost, behaviorally-founded tools for local governments to recoup their debts quickly. 
 
-Sed in scelerisque eros. Proin eu fermentum mauris. Vestibulum id ante lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed sit amet lacus dolor. Nam ultricies accumsan ipsum sit amet dapibus. Sed ut ligula ligula. Ut luctus quam nec ex sagittis vestibulum. Nunc eget faucibus orci.
+The first chapter is all about investigating the labor market for teachers and which incentives can be targeted by policymakers to improve student outcomes. Good teachers have large impacts on student achievement\footnote{See,
+  e.g., Rockoff (\citeyearpar{rockoff}).}. It is
+therefore imperative for public schools to be able to attract and retain
+high-quality teachers. Of preeminent concern for policymakers, then, is
+the strength of the various manipulable levers at their disposal for
+influencing teacher labor markets. More specifically, state and local
+education administrators would like to identify the policy implications
+of various tools on three types of teacher mobility: intra-district
+switching, where due to the collectively bargained nature of most
+teachers' salaries, only nonpecuniary considerations matter,
+inter-district switching, where teachers move to another school district
+in the same state, and exo-district switching, where teachers leave the
+public teaching workforce entirely\footnote{Policies that affect the
+  supply and quality of new teachers to the profession may also be of
+  considerable importance to replenishing and improving the stock of
+  teachers over time, but I do not consider these channels in this
+  work. See Harris and Sass (\citeyearpar{harris}),
+  Wayne et al. (\citeyearpar{wayne}), and Boyd et al.
+  (\citeyearpar{boyd2009}).}.
 
-Donec at nulla sapien. Mauris sit amet erat id lorem lobortis commodo sed sed diam. Sed aliquam enim sit amet neque dictum, laoreet porttitor ex consectetur. Mauris eleifend ut ligula eget hendrerit. Donec ultrices sapien lacus, porta feugiat massa dignissim sit amet. Nam tempus lectus eros, at tristique lacus dignissim a. Fusce et efficitur dolor. Donec laoreet consequat neque sit amet porttitor. Pellentesque efficitur non arcu eget congue. Morbi blandit purus augue, a fringilla justo porta sit amet.
+The brunt of this chapter is a replication in a new
+context (Wisconsin) and time horizon (2000 - 2010) of Hanushek,
+Kain, and Rivkin (\citeyearpar{hanushek}), who analyze various predictors of teacher churn. The headline results of Hanushek, Kain, and Rivkin (\citeyearpar{hanushek})
+were that ``teacher mobility is much more strongly related to
+characteristics of the students, particularly race and achievement, than
+to salary, although salary exerts a modest impact once compensating
+differentials are taken into account.'' I confirm the pith of this
+conclusion, namely that student characteristics are a much better
+predictor of turnover than are wage differentials, though I come to
+different conclusions regarding more specific points. To wit, while I
+do find strong evidence that the socioeconomic makeup of a teacher's
+district predicts turnover (and that there is heterogeneity in this
+effect by teacher race), the evidence I find for the importance of
+wages and student achievement is far from compelling.
 
-Pellentesque ac ligula magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec elementum enim nec mi volutpat ultrices. Ut lacus lorem, aliquam eget fermentum ut, pulvinar sit amet sapien. Morbi rhoncus blandit sapien facilisis tincidunt. Phasellus mollis bibendum sem, nec facilisis purus euismod quis. Ut dictum rutrum augue ultricies laoreet. Morbi sem metus, gravida ut ornare quis, ultricies eget velit. In efficitur, ligula sit amet hendrerit ornare, nisi sem viverra eros, ut volutpat ex nulla in mi. Sed convallis tortor nulla, sit amet efficitur turpis consequat interdum. Duis pharetra, leo id consequat efficitur, augue arcu aliquet mi, sit amet convallis lorem massa nec neque.
+I explore to the extent possible potential contributors to this
+discrepancy in results; most salient are the measurable differences
+between Texas, where Hanushek, Kain, and Rivkin
+(\citeyearpar{hanushek}) conduct their study, and
+Wisconsin. Wisconsin is a largely rural state -- its largest
+city/metropolitan area, Milwaukee, currently has roughly 600,000
+residents (1,500,000 including the metropolitan area), making it around
+the 30th-largest city in the United States\footnote{In fact, Milwaukee
+  is the only city in Wisconsin considered to be ``large'' for NCES
+  reporting purposes.}. By contrast, Texas has six cities larger than
+this, with El Paso (\#6 in Texas) being the nearest in size to
+Milwaukee. Though the non-urban parts of Texas are themselves sparsely
+populated and distinctly rural, the more uniform lack of major
+population centers in Wisconsin is likely to be reflected when
+considerably different preferences among local vis-à-vis urban residents
+for various aspects of potential teaching positions are aggregated.
+
+To the end of exploring the pecuniary aspects of teacher turnover, I
+start by expanding upon the efforts of Hanushek, Kain, and Rivkin
+(\citeyearpar{hanushek}) to infer teachers' tenure-wage
+paths from teacher-level data on pay. Most unionized teachers are paid
+according to a salary schedule (specifying wages as an increasing
+function of tenure and certification) explicated in contracts
+collectively bargained at the district level. With this easily-obtained
+information in hand, teachers are able to infer their future potential
+wage trajectories at their own and other potential district employers.
+Lacking the physical contract faced by the teachers, an econometrician
+armed only with administrative data reporting actual wages in a given
+year must use some imputation techniques to deduce the underlying wage
+structure. I explore the utility of natural Constrained B-Splines
+(COBS) to this end. COBS are an enhanced version of the traditional
+semiparametric splines technique enhanced by the ability to impose a
+monotonicity constraint on the resultant curve which allows the fit to
+incorporate more local information from nearby experience cells.
+
+The fidelity and utility of the resulting fitted contract curves are
+supreme. In both large and small districts, COBS produces a plausible
+tenure-wage arc which enables us to examine counterfactual wage levels
+for mobile teachers. By comparing the fit to a small number of wage
+tables obtained from actual contracts, I also learn that using COBS may
+be preferable to an attempt to use actual wage tables, as the
+data-derived curves can reveal latent progress of teachers towards
+further certification, an aspect which is commonly observed in salary
+tables but rarely included in teacher-level data.
+
+The second Chapter continues to have improving student-teacher interactions as a motivation, but proceeds to study an older segment of the education sector -- college. With the rise of technology in the classroom have come a variety of
+approaches to teaching course material based on methods unavailable in
+the past due to absent technological tools. While the literature
+formally aiming to identify causal effects of these new methods on
+student outcomes is growing, there is still as yet no broad conclusions
+about if, when, and how such new methods can be used to serve the needs
+of students and/or simplify the process of learning for students and
+instructors alike.
+
+This chapter seeks to advance our understanding of factors that influence
+students' engagement and learning in college mathematics. The particular
+focus of the study is a comparison of traditional and active
+instructional methods (with online components) in the context of an
+intermediate calculus course at a mid-sized private university in the
+Northeast. In theory, the appeal of active learning classrooms is
+that students taught in this mode will more fully engage with the
+curriculum and, as a result, that they will attain deeper understanding
+and mastery of mathematical concepts, thereafter proceeding to pursue
+degrees in math or the sciences
+
+I test this hypothesis by block-randomizing students between the two
+pedagogical modes and monitoring their performance in the course. I
+supplement the quantitative measures of student progress with
+qualitative data obtained through formal course observations designed to
+elicit an understanding of the differences in learning environments and
+treatment fidelity among the six lecture sections.
+
+Given substantial noncompliance observed in the data, I use the
+potential outcomes framework of, e.g., Rubin
+(\citeyearpar{rubin}), G. W. Imbens and Rubin
+(\citeyearpar{imbens}) and Angrist and Imbens
+(\citeyearpar{angrist}) to construct intent-to-treat
+(ITT) and local average treatment effect (LATE) estimates of active
+learning environments on student performance. I incorporate the blocked
+nature of randomization to our estimates by block-bootstrapping standard
+errors for these estimates. I find suggestively negative point
+estimates in two of the time slots, but no results are statistically
+significant.
+
+The substantial noncompliance observed in the data is suggestive of
+several important considerations for randomized trial design in similar
+settings. It is apparent that instructor fixed effects can be
+substantial -- in our setting, there was stark contrast in the level of
+experience of the traditional vis-a-vis the active learning instructors
+in precisely the two sections that attracted the most non-compliers
+(i.e., this level of experience is also accompanied by renown among
+students). Absent randomizing instructors to pedagogical modes or
+restricting the ability of students to change sections (both impossible,
+practically speaking), the solution to overcoming this threat to
+identification is replication -- namely, to continue to monitor the
+performance of students in the two instructional modes. In the longer
+run, sample size increase and balancing of fixed effects as instructors
+accustom to the new method and students gain comfort with how to perform
+in such a class stand to strengthen our understanding of the impacts of
+active learning for student achievement.
+
+Our experience with treatment infidelity in the pilot round of our collaborative study with the City of Philadelphia led us to design a more ambitious and tightly-controlled second iteration of our real estate tax experiment, which is the topic of Chapter 3. Property taxation is the primary tax for most U.S. cities.  In fiscal
+year 2013, 30 percent of all local government revenues and over 73
+percent of local taxes came from the property tax
+\cite{barnett2013state}.  Yet collection of the tax has, in many
+cities, been problematic.  While some U.S. cities do an excellent job
+in collecting the tax, receiving over 95 percent of assessed revenues
+in the year the tax is due, other cities have over the last ten years
+done significantly worse -- notably Flint (78\%), Cleveland (84\%),
+Pittsburgh (86\%), Milwaukee (87\%), Philadelphia (88\%), Detroit
+(89\%), and St. Louis (89\%).\footnote{For more details, see
+  \cite{CILMS-16}.}  While Flint, Detroit, Cleveland and Milwaukee
+are relatively poor cities, Philadelphia and Pittsburgh are not.
+Among the list of cities with outstanding tax collection records are
+Buffalo, Birmingham, Houston, and New Orleans.  While city poverty is
+important, it cannot be the whole explanation for low rates of
+collection.  Poor tax administration is likely to be an important
+contributing factor as well.
+
+This failure to collect the property tax on time creates budget
+uncertainty at best and budget deficits at worst.  Yet collecting the
+property tax should be straightforward.  In contrast to collecting
+self-reported taxes such as those on income, profits, and sales,
+property tax obligations equal to the city's assigned assessed value
+of the taxed property times the city chosen tax rate are known by both
+the city and the taxpayer.  There is no uncertainty as to what is due,
+or when.\footnote{Much of the current literature on tax compliance has
+  focused on taxpayers truthful reporting of income or sales under the
+  threat of a tax audit; see \cite{Slemrod-07} for a review and more
+  recently the research of \cite{Kleven-11} and \cite{Pomeranz-15}.}
+Payment is primarily a matter of enforcement.  The most common
+enforcement strategy is the economic stick: fines and penalties.
+Failure to pay property taxes in time leads to interest penalties
+sufficiently large that there is no arbitrage advantage to waiting,
+and perhaps to a significant late fine as well.
+
+When a delinquent taxpayer does not respond to penalties and fines,
+the city can take out a tax lien on the property.  A lien does not
+impose any immediate direct, tangible costs on a  taxpayer
+since payments are typically only realized at the time of a
+transaction.\footnote{A city can also sell tax liens to investors to
+  speed up the revenue collection process. Liens often sell at above
+  par prices because of the foreclosure option. But selling liens to
+  ``vulture investors'' can be politically costly for a city
+  administration.}  However, obtaining a tax lien enables the owner of
+the lien to eventually start a foreclosure process. When the owner of
+a property located in a city fails to make a payment arrangement on
+municipal tax levied on his or her property, that property may be
+sold at auction to allow the city to collect on that unpaid debt.
+However, the foreclosure process is costly and time
+intensive.\footnote{Auctions are administered in Philadelphia by the
+  Office of the Sheriff.  This process of offloading a property at
+  Sheriff's Sale can take nine months to a year.}  While there are
+some problems with the effectiveness of the existing enforcement
+mechanisms, it is only possible to avoid payment by abandoning the
+property in the long run. Needless to say, this is a very costly
+option for most owners.
+
+Despite the fact that there are no obvious financial gains to not
+paying property taxes, we observe that a significant fraction of tax
+payers do not pay on time. To explain the behavior of these
+procrastinators, researchers have started to explore the effectiveness
+of softer, nudge approaches or notification strategies to reinforce
+the different motivations of tax compliance.  This chapter uses a field
+experiment involving over 19,000 delinquent Philadelphia taxpayers to
+examine the effectiveness of seven alternative strategies for
+improving city property tax collection. Each involves a randomly
+assigned tax ``nudge'' of a tardy taxpayer.  The first is a
+simple reminder that the payment is late.  The next two involve the
+reminder plus a threat of a significant sanction if payment is not
+received by the end of the calendar year: a lien on the home when sold
+equal to taxes due plus accrued interest and penalties \textit{or} the
+lien coupled with an immediate sheriff's sale of the home to collect
+the lien.  The final four nudges include the reminder coupled with an
+appeal to what the tax compliance literature has called a ``tax
+morale'' motive for paying one's taxes.\footnote{See
+  \cite{Luttmer-14} for a review of the tax morale strategies for tax
+  compliance.  They identify three tax morale motivations in the
+  literature, each grounded in a positive gain in utility from the act
+  of paying one's taxes.  These include: 1) a motive from reciprocity
+  where the taxpayer recognizes they are part of a larger group
+  playing a non-cooperative game with other taxpayers for the provision of public goods; 2) a motive
+  from peer behavior where the taxpayer gains utility from knowledge
+  that they are part of larger group of contributors; and 3) an
+  intrinsic motivation that provides a direct utility benefit from the
+  act of paying one's taxes.  \cite{Luttmer-14} also mention taxpayer
+  culture and taxpayer behavior other than utility maximization as
+  additional explanations for the rate of taxpayer compliance. }  The
+four morale motives included here are: first, a reminder that taxes
+pay for neighborhood services such as street repairs, trash pick-up
+and the local park; second, a reminder that taxes pay for important
+city-wide services such as police protection and public schools;
+third, a reminder that 9 out of 10 Philadelphians have paid their
+taxes and you have not; and fourth, a reminder that paying one's taxes
+is an important obligation of citizenship in a democracy.  Tax
+compliance after receiving one of the seven ``nudges'' is then
+compared to compliance for those who have not received a ``nudge'' 
+dues to random assignment to a holdout sample.
+
+
+To understand the potential influence of each nudge, we model tax
+delinquency as a problem of taxpayer procrastination following
+\cite{Akerlof-91} and \cite{DR-99}.  Procrastination occurs 
+because of present bias as in \cite{DR-99} and declining saliency as in
+\cite{Akerlof-91}.  Present bias is always present.  Saliency can be
+nudged by a reminder letter.  The reminder letters stressing liens or
+liens plus the sale of one's home add a future expected cost to
+non-payment as in the tax compliance model of
+\cite{Allingham-Sandmo-72}.  The reminder letters stressing the tax
+morale are modeled as utility gains to the procrastinator from paying
+ones taxes.  Economic theory, therefore, plays a central role in the design and implementation
+of our field experiment. Late payments arise in our model 
+due to lack of salience, lack of deterrence or lack of tax morale.  
+We have designed the field experiment to test the importance of these 
+three competing theories. We show that the treatment effects that are identified
+by our experiment have a clear interpretation in the context of the
+parameters of our model.  Our experiment is, therefore, designed to explicitly
+test competing models of behavior as recommended by Levitt and List
+\citeyearpar{levitt2007laboratory} and \cite{cdvm-11}.
+
+Our work here is closely related to the recent work of
+\cite{Hallsworth-14} studying the effect of taxpayer nudges on the
+timeliness of income tax payments in the UK and to Castro \& Scartascini's \citeyearpar{castro} study
+of local property tax payments in Argentina.  Like our study, the
+amount owed to the tax authorities in these two studies is known by
+the authority and the taxpayer with certainty; the only issue is
+payment. As here, the empirical analysis of \cite{Hallsworth-14}
+follows from a model of taxpayer procrastination.  The primary focus
+of their field experiments is the \textit{framing} of the morale
+nudge, comparing the effectiveness of what they call a
+\textit{descriptive} message (``a majority of citizens pay their
+taxes'') to that of an \textit{injunctive} message (``you
+\textit{should} pay your taxes because'').  Our analysis also includes
+a descriptive message (``9 out 10 taxpayers have paid their tax'') and
+an injunctive message (paying one's taxes is a duty of citizenship'').
+We differ from the \cite{Hallsworth-14}, by including a more strongly
+worded message on the penalties for non-compliance and by allowing a
+longer period of study for compliance behavior (3 weeks vs. 6 months
+in our study).  The longer period allows a sharper identification of
+the saliency of each nudge.  Finally, they study compliance for the
+payment of an important national tax; we study compliance for an
+important local tax.  Like the work
+here, \cite{castro} study citizen payment of their local property
+taxes. They also examine effectiveness of separate nudges that stress
+legal and financial consequences of non-payment, the advantage of
+payment for the provision of neighborhood services (street lighting),
+and the fact that seven of ten taxpayers do pay their bills on
+time. However, they do not consider the effects of saliency nudges
+independent of the content of the nudges, which is one of the key
+objectives of our analysis.\footnote{We conducted an earlier pilot study of
+  property tax compliance in Philadelphia.  The results are reported
+  in \citealt{CILMS-16}. In contrast to our results here, we find evidence that  tax morale motives drive by public good provision, peer effects, and civic duty can positively impact
+  property tax payment compliance; see footnote \ref{fn:nudges} below.}
+
+Our experiment supports three central conclusions. First, saliency of
+the tax obligation matters. A simple reminder letter has both a
+statistically significant and quantitatively significant impact on the
+rate of taxpayer compliance, though the effect wears off over
+time. Second, beyond the simple reminder, the content of the ``nudge''
+matters as well with those stressing rising financial penalties having
+the greatest impact on compliance. Those appealing to a tax morale --
+neighborhood, community, peer behavior, and civic duty -- were no more
+successful than the simple reminder letter in inducing additional tax
+compliance. Third, the marginal revenue benefit of our most effective message is significant, raising \$36 in new revenue for each \$1 of administrative costs. That said, however, the aggregate effect of nudges on uncollected revenue is modest, bringing in only 5\% of all revenue still owed, at least in Philadelphia.
