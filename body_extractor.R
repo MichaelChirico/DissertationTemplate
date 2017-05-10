@@ -40,7 +40,7 @@ add_adjust = function(x, lbl, p, dir = '-') {
   c(x[1L:(start_tab - 1L)],
     paste0('\\begin{adjustbox}{width=\\textwidth,totalheight=',
            p,'\\textheight,keepaspectratio}'),
-    x[start_tab:end_tab], '\\end{adjust_box}',
+    x[start_tab:end_tab], '\\end{adjustbox}',
     x[(end_tab + 1L):length(x)])
 }
 
@@ -53,12 +53,12 @@ scriptsize_caption = function(x, lbl) {
   if (lbl_idx - start_idx > 1L) {
     caption_coll = paste(x[start_idx:(lbl_idx - 1L)], collapse = ' ')
     fix_caption = gsub('\\caption\\{(.*)\\}', 
-                        '\\caption{\\scriptsize{\\1}}',
+                        '\\caption{\\\\scriptsize{\\1}}',
                         caption_coll)
     x = c(x[1L:(start_idx - 1L)], fix_caption, x[lbl_idx:length(x)])
   } else {
     x[start_idx] = gsub('\\caption\\{(.*)\\}', 
-                        '\\caption{\\scriptsize{\\1}}',
+                        '\\caption{\\\\scriptsize{\\1}}',
                         x[start_idx])
   }
   x
@@ -75,7 +75,10 @@ ch1 = readLines('full_chapters/turnover_paper.tex')
 #  (or vice versa, but this is pretty straightforward)
 #  (done now since there are also citations in appendix)
 ch1 = gsub('\\\\protect\\\\hyperlink\\{ref-([^}]*)\\}\\{[0-9]{4}\\}',
-           '\\citeyear{\\1}', ch1)
+           '\\\\citeyear{\\1}', ch1)
+#not sure why knitr adds this second link? but delete
+ch1 = gsub('\\\\protect\\\\hyperlink\\{ref-([^}]*)\\}\\{[a-z]+\\}',
+           '', ch1)
 
 body_start = grep('\\TAG{BEGIN_BODY}', ch1, fixed = TRUE) + 1L
 #bibliography included at end of dissertation
@@ -108,9 +111,11 @@ ch1 = scriptsize_caption(ch1, 'tbl:reg_mlogit')
 
 #results section has duplicate label over all chapters:
 ch1 = gsub('\\section{Results}\\label{results}',
-           '\\section{Results}\\label{results-ch1}', ch1)
+           '\\section{Results}\\label{results-ch1}', 
+           ch1, fixed = TRUE)
 ch1 = gsub('\\section{Literature Review}\\label{literature-review}',
-           '\\section{Literature Review}\\label{literature-review-ch1}', ch1)
+           '\\section{Literature Review}\\label{literature-review-ch1}', 
+           ch1, fixed = TRUE)
 
 #identify by hand instances where referring to "paper"
 #  when should be referring to "chapter"
@@ -127,14 +132,16 @@ ch1 = gsub('paper(, there| of restricting|\\. Data)',
 # ch2 = ch2[body_start:body_end]
 # 
 # ch2 = gsub('\\\\protect\\\\hyperlink\\{ref-([^}]*)\\}\\{[0-9]{4}\\}',
-#            '\\citeyear{\\1}', ch2)
+#            '\\\\citeyear{\\1}', ch2)
 # 
 # ch2 = add_adjust(ch2, 'tbl:desc', .9)
 # 
 # ch2 = gsub('\\section{Results}\\label{results}',
-#            '\\section{Results}\\label{results-ch1}', ch2)
+#            '\\section{Results}\\label{results-ch1}',
+#            ch2, fixed = TRUE)
 # ch2 = gsub('\\section{Literature Review}\\label{literature-review}',
-#            '\\section{Literature Review}\\label{literature-review-ch1}', ch2)
+#            '\\section{Literature Review}\\label{literature-review-ch1}',
+#            ch2, fixed = TRUE)
 # 
 # #manually identified just one
 # ch2 = gsub('This paper focuses', 'This chapter focuses', ch2, fixed = TRUE)
@@ -157,6 +164,8 @@ ch3 = ch3[body_start:body_end]
 #  and \citeyear (which is actually \citeyearpar)
 ch3 = gsub('citeA', 'cite', ch3, fixed = TRUE)
 ch3 = gsub('citeyear', 'citeyearpar', ch3, fixed = TRUE)
+
+ch3 = add_adjust(ch3, 'sh_rev', .9, '+')
 
 # only one manually-identified of reference as a paper
 ch3 = gsub('in the paper', 'in this chapter', ch3)
@@ -190,6 +199,7 @@ writeLines(full_bib, 'references.bib')
 ##   the appendices here (since recursive includes are illegal --
 ##   only the top-level tex file can have \includes)
 
+ch3_app = add_adjust(ch3_app, 'sh_logit', .9, '+')
 ch3_app = add_adjust(ch3_app, 'sh_logit_rob', .9, '+')
 
 app = c('\\begin{appendices}',
