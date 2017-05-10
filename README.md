@@ -17,7 +17,7 @@ It relies on using the customized `\TAG{label}` created with the `verbatim` pack
 Here's one possible complete work flow for creating your dissertation:
 
  1. Fork this repository and/or clone locally.
- 2. Tune `aggregator.sh` and `body_extractor.R` to the unique parts of your dissertation.
+ 2. Tune `aggregator.sh` and `body_extractor.R` to the unique parts of your dissertation. Run `sh aggregator.sh` in this folder. 
  3. Define the following in `dissertation.tex`: `\thetitle`, `\theauthor`, `\theadvisor`, `\THEAUTHOR`, `\THEADVISOR`, `theyear`. Also rename/insert/delete the chapters in `\chapter{Chapter Name}` and `\input{content/_chapter_name_}`.
  4. Compose your abstract, acknowledgment, copyright, dedication, and title in `frontmatter/`.
  5. Compose your introduction and conclusion in `content/`.
