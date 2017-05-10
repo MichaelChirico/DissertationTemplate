@@ -117,8 +117,6 @@ ch1 = gsub('\\section{Literature Review}\\label{literature-review}',
 ch1 = gsub('paper(, there| of restricting|\\. Data)', 
            'chapter\\1', ch1)
 
-writeLines(ch1, 'content/turnover.tex')
-
 ###############################################################################
 #                                  CHAPTER 2                                  #
 ###############################################################################
@@ -140,8 +138,6 @@ writeLines(ch1, 'content/turnover.tex')
 # 
 # #manually identified just one
 # ch2 = gsub('This paper focuses', 'This chapter focuses', ch2, fixed = TRUE)
-# 
-# writeLines(ch2, 'content/turnover.tex')
 
 ###############################################################################
 #                                  CHAPTER 3                                  #
@@ -165,6 +161,13 @@ ch3 = gsub('citeyear', 'citeyearpar', ch3, fixed = TRUE)
 # only one manually-identified of reference as a paper
 ch3 = gsub('in the paper', 'in this chapter', ch3)
 
+###############################################################################
+#                                BUILD CHAPTERS                               #
+###############################################################################
+#do this in separate section so you can more easily sandbox all the chapters
+#  without overwriting the file in the content folder accidentally
+writeLines(ch1, 'content/turnover.tex')
+# writeLines(ch2, 'content/turnover.tex')
 writeLines(ch3, 'content/procrastination.tex')
 
 ###############################################################################
