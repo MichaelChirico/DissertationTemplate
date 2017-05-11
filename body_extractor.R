@@ -202,6 +202,9 @@ writeLines(full_bib, 'references.bib')
 ch3_app = add_adjust(ch3_app, 'sh_logit', .9, '+')
 ch3_app = add_adjust(ch3_app, 'sh_logit_rob', .9, '+')
 
+ch1_app_title = 'Longitudinal Teacher Panel from Unlinked Cross-Sectional Cuts'
+ch3_app_title = 'Additional Figures and Tables'
+
 app = c('\\begin{appendices}',
         '    \\addtocontents{toc}{\\protect\\setcounter{tocdepth}{1}}',
         '    \\makeatletter',
@@ -210,9 +213,11 @@ app = c('\\begin{appendices}',
         '        \\let\\protect\\l@chapter\\protect\\l@section',
         '        \\let\\protect\\l@section\\protect\\l@subsection',
         '    }', '',
-        '\\chapter{Appendix to Chapter 1}', '',
+        #technically, my chapter 1 is numbered as chapter 2 because
+        #  my intro is included as a proper chapter
+        paste0('\\chapter{Appendix to Chapter 2: ', ch1_app_title, '}'), '',
         ch1_app, '',
-        '\\chapter{Appendix to Chapter 3}', '',
+        paste0('\\chapter{Appendix to Chapter 4: ', ch3_app_title, '}'), '',
         ch3_app, '',
         '\\end{appendices}')
 
