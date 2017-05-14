@@ -44,7 +44,7 @@ name as well. A search was done of the data for irregular characters
 resolved (e.g., \texttt{l0is\ a\ dewey} was easy to resolve as being
 \texttt{lois\ a\ dewey}), and this is implemented next.
 
-Next, we create a ``clean'' version of the name fields which strips away
+We then create a ``clean'' version of the name fields which strips away
 all whitespace, initials (lone letters), and punctuation. At this stage,
 all observations which identically match another in the same year from
 the viewpoint of the algorithm -- namely, those that match exactly
@@ -157,15 +157,18 @@ teacher, at least 70\% of whom have one ethnicity (or gender), the idea
 being that names like Xu or Gutierrez are strongly associated with a
 particular ethnicity. This type of correction is uncommon enough not to
 warrant an appeal to a more sophisticated approach commonly found in
-natural language processing applications.
+natural language processing applications, e.g.~training a classifier
+such as a random forest (Breiman \citeyear{breiman})
+to predict ethnicity as accurately as possible.
 
 Lastly, we synergize the year of birth field for those matched in Steps
 19 or 20 by assigning the one that appears most frequently for each
 teacher; in the case of ties, we use a regression-to-the-mean-type logic
 and assign the year which brings the teacher closer to the median age
 observed in the data. More data-driven approaches (conditioning the
-target median on the teacher's employer, position, year in the data,
-etc.) were again eschewed for expediency.
+target median on the teacher's employer, position, year in the data, or
+using social security data to determine the maximum-likelihood year of
+birth for a given first name, etc.) were again eschewed for expediency.
 
 \subsection{\texorpdfstring{Validity Check:
 \texttt{file\_number}}{Validity Check: file\_number}}\label{validity-check-file_number}

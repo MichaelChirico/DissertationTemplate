@@ -110,9 +110,6 @@ ch1 = scriptsize_caption(ch1, 'tbl:reg_lpm_fe')
 ch1 = scriptsize_caption(ch1, 'tbl:reg_mlogit')
 
 #results section has duplicate label over all chapters:
-ch1 = gsub('\\section{Results}\\label{results}',
-           '\\section{Results}\\label{results-ch1}', 
-           ch1, fixed = TRUE)
 ch1 = gsub('\\section{Literature Review}\\label{literature-review}',
            '\\section{Literature Review}\\label{literature-review-ch1}', 
            ch1, fixed = TRUE)

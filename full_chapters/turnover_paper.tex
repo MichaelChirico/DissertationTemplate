@@ -83,7 +83,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{May 10, 2017}
+  \date{May 13, 2017}
 
 \usepackage{theapa}
 \usepackage{array}
@@ -136,7 +136,7 @@ public teaching workforce entirely\footnote{Policies that affect the
 
 In this paper, we consider pecuniary and non-pecuniary predictors of
 various types of teacher churn in replicating the analyses of Hanushek,
-Kain, and Rivkin (\protect\hyperlink{ref-hanushek}{2004}) in a new
+Kain, and Rivkin (\protect\hyperlink{ref-hanushek}{2004}) (HKR) in a new
 context (Wisconsin) and time horizon (2000 - 2010). The headline results
 of Hanushek, Kain, and Rivkin (\protect\hyperlink{ref-hanushek}{2004})
 were that ``teacher mobility is much more strongly related to
@@ -194,7 +194,10 @@ tables obtained from actual contracts, we also learn that using COBS may
 be preferable to an attempt to use actual wage tables, as the
 data-derived curves can reveal latent progress of teachers towards
 further certification, an aspect which is commonly observed in salary
-tables but rarely included in teacher-level data.
+tables but rarely included in teacher-level data Thus,
+empircally-derived curves can hew closer to the true wage path that
+rationally forward-thinking teachers are likely to consider when mulling
+over career options.
 
 \TAG{END_INTRO}
 
@@ -377,15 +380,17 @@ Initiative, a randomized controlled trial conducted in 10 districts
 whereby high-performance teachers were given \$20,000 over the course of
 two years as reward for transferring the identified high-needs schools,
 and conclude that there were significant effects on teacher retention as
-well as on student outcomes. Two highly germane papers investigate the
-impact in Wisconsin on teachers of Governor Scott Walker's flagship
-policy, Act 10, which severely limited the scope for collective
-bargaining in the state. Litten (\protect\hyperlink{ref-litten}{2016})
-uses differences in contract renewal dates surrounding the policy's
-enactment to evince the effect of unionization on teachers' wages, and
-finds the lack of union bargaining power reduced teacher compensation by
-8\%. Biasi (\protect\hyperlink{ref-biasi}{2017}) constructs value-added
-measures from grade-level test results and concludes that the move to
+well as on student outcomes.
+
+Two highly germane papers investigate the impact in Wisconsin on
+teachers of Governor Scott Walker's flagship policy, Act 10, which
+severely limited the scope for collective bargaining in the state.
+Litten (\protect\hyperlink{ref-litten}{2016}) uses differences in
+contract renewal dates surrounding the policy's enactment to evince the
+effect of unionization on teachers' wages, and finds the lack of union
+bargaining power reduced teacher compensation by 8\%. Biasi
+(\protect\hyperlink{ref-biasi}{2017}) constructs value-added measures
+from grade-level test results and concludes that the move to
 individually-negotiated salaries in some districts had a significant
 impact on teacher quality and student outcomes in such districts, while
 also cautioning that most of these gains are competition-based, so that
@@ -402,31 +407,35 @@ of September\ldots{}'' (Public Instruction
 \protect\hyperlink{ref-dpi}{2017}\protect\hyperlink{ref-dpi}{b}), and
 will serve as the primary source of data on teachers in this paper. Data
 are available at the position-teacher level cross-sectionally, with each
-entry corresponding to one of possibly several positions/assignments
-held by each school district employee\footnote{Many teachers (and other
-  district employees) serve in multiple roles within a school/district,
-  for example as a coach, part-time program aide, or department head.
-  Each of these is filed as a separate observation in the DPI system.}.
-Identifiers in each file permit unique identification of an employee
-within a given year, but this identifier does not follow teachers
-between years\footnote{From AY2011-12, a field called the File Number
-  appears to allow longitudinal tracking of teachers. We use this in
-  part to validate the matching algorithm; see the Appendix.}. To
-overcome this substantial hurdle to identifying teacher mobility, data
-are first fed through the matching algorithm described in further detail
-in the appendix. Essentially, we are aided by the availability of
-various imperfect identifiers which are more stable over time, most
-crucially teachers' first and last names and year of birth. By building
-on these covariates and incorporating some limited fuzzy matching
-techniques, we construct a panel of teachers spanning the 1994-95
-academic year (AY) through AY2015-16\footnote{For brevity, we herein
-  refer to academic years by the spring year, e.g., AY2003-04 will be
-  simply 2004.} consisting of 3,588,614 teacher-position-year
-observations. The matching algorithm necessitates elimination of 26,304
-(0.7\%) observations on account of belonging to teachers who could not
-be uniquely identified in a given year of data due to exact overlap of
+entry in a given year corresponding to one of possibly several
+positions/assignments held by each school district employee\footnote{Many
+  teachers (and other district employees) serve in multiple roles within
+  a school/district, for example as a coach, part-time program aide, or
+  department head. Each of these is filed as a separate observation in
+  the DPI system, though salary information is given at the teacher as
+  opposed to the assignment level.}. Identifiers in each file permit
+unique identification of an employee within a given year, but this
+identifier does not follow teachers between years\footnote{From
+  AY2011-12, a field called the File Number appears to allow
+  longitudinal tracking of teachers. We use this in part to validate the
+  matching algorithm; see the Appendix.}. To overcome this substantial
+hurdle to identifying teacher mobility, data are first fed through the
+matching algorithm described in further detail in the Appendix.
+Essentially, we are aided by the availability of various imperfect
+identifiers which should be more stable over time, most crucially
+teachers' first and last names and year of birth. By building on these
+covariates and incorporating some limited fuzzy matching techniques, we
+construct a panel of teachers spanning the 1994-95 academic year (AY)
+through AY2015-16\footnote{For brevity, we herein refer to academic
+  years by the spring year, e.g., AY2003-04 will be simply 2004.}
+consisting of 3,588,614 teacher-position-year observations. The matching
+algorithm necessitates elimination of 26,304 (0.7\%) observations over
+all 21 years on account of belonging to teachers who could not be
+uniquely identified in a given year of data due to exact overlap of
 their first name, last name, and birth year fields with another teacher
-in the data.
+in the data\footnote{Technically, we use a slightly modified version of
+  the name strings in making these eliminations which, for example,
+  eliminates initials -- see Appendix.}.
 
 Specific to the exercise at hand, with data reliability and precision in
 mind, we make the following series of further restrictions on the data.
@@ -442,7 +451,7 @@ full-time, full-year regular teachers of a major core subject
 public school with a Bachelor's or Master's degree and fewer than 35
 years' recorded experience; taken together, these restrictions eliminate
 79\% of employees, the lion's share of which come from eliminating
-substitutes/support staff and teachers non-core subjects\footnote{\label{ftn:pos_code}We
+substitutes/support staff and teachers of on-core subjects\footnote{\label{ftn:pos_code}We
   also eliminate any teacher who appears in any role besides ``Teacher''
   in any year. In particular, this eliminates a nontrivial number of
   educators who begin their career with an ``ease-in'' period, take a
@@ -461,11 +470,11 @@ Hispanic, eliminating a further 0.2\% of all employees\footnote{Wisconsin
   teachers are predominantly white (96\%). As noted in the Appendix, we
   also use the panel data to correct noise found in recorded ethnicity
   and gender over time for some teachers. In the final sample, 427 and
-  345 teachers had their ethnicity and gender (respectively) adjusted.}.
-Finally, we drop teachers' multiple positions by keeping only the
-highest-intensity position for each teacher, as measured by full-time
-equivalency, resulting in a final count of 282,797 teacher-year
-observations.
+  345 teachers had their ethnicity and gender (respectively) adjusted in
+  some year(s).}. Finally, we drop teachers' multiple positions by
+keeping only the highest-intensity position for each teacher, as
+measured by full-time equivalency, resulting in a final count of 282,797
+teacher-year observations -- 49,325s in 449 districts and 2,296.
 
 The data used for the incorporation of counterfactual salary
 calculations is largely the same, but with a few noteworthy differences.
@@ -476,22 +485,24 @@ on defining turnover. This concern not being relevant to constructing
 the salary schedules, it is not imposed for this data. Next, because all
 regular teachers are covered by the same collective bargaining
 agreement, the salary imputation data is less restrictive with respect
-to the subject codes excluded from the data. This data also ignores
-instability in recorded gender and ethnicity within a teacher. Finally,
-the salary data loses observations that are present in the turnover data
-based on a series of cuts which are either required for COBS to
-function, or else substantially increase the reliability of its output.
-The most noteworthy/far-reaching of these numerical restrictions is to
-eliminate any teachers working in districts where there are not at least
-20 total teachers in each degree track. While ultimately arbitrary, this
-number is reasonable to limit the potential effect of an individual
-teacher given the function to be fit to 30 levels of experience with
-minimal functional form restrictions. The other numerical flags require
-both the BA \& MA track to be represented at a district, for at least 7
-distinct levels of experience to be represented within a degree track,
-and for at least 5 unique values of the two measures of pay (salary and
-fringe benefits) to be available in each degree track; all teachers at
-districts failing at least one of these tests is dropped.
+to the subject codes excluded from the data, and generally includes any
+teacher not in special education. This data also ignores instability in
+recorded gender and ethnicity within a teacher.
+
+Finally, the salary data loses observations that are present in the
+turnover data based on a series of cuts which are either required for
+COBS to function, or else substantially increase the reliability of its
+output. The most noteworthy/far-reaching of these numerical restrictions
+is to eliminate any teachers working in districts where there are not at
+least 20 total teachers in each degree track for that year. While
+ultimately arbitrary, this number is reasonable to limit the potential
+effect of an individual teacher on an exercise determining 35 levels of
+pay with minimal functional form restrictions. The other numerical flags
+require both the BA \& MA track to be represented at a district, for at
+least 7 distinct levels of experience to be represented within a degree
+track, and for at least 5 unique values of the two measures of pay
+(salary and fringe benefits) to be available in each degree track; all
+teachers at districts failing at least one of these tests is dropped.
 
 The sum total of all of these restrictions leaves us with an analysis
 sample of 356,265 teacher-year observations to be used to estimate pay
@@ -501,9 +512,10 @@ years. In total, there is sufficient data to fit 3,708
 curve. Ultimately around 22\% of teachers have missing salary
 information\footnote{HKR include like-minded restrictions, but combine
   teachers of different certification within an experience level,
-  despite the major importance of this factor to teacher pay.}, mostly
-in rural districts or other districts with only one or two schools and a
-small number of students.
+  despite the headline importance of this factor to teacher pay --
+  median pay at a given level of experience is on average 17 higher for
+  those with a Master's degree.}, mostly in rural districts or other
+districts with only one or two schools and a small number of students.
 
 We supplement the WISEstaff data set in several ways to incorporate
 information about other characteristics of schools and districts in
@@ -515,14 +527,19 @@ of Data, which provide this information on a yearly basis for all years
 in the study\footnote{The method of recording urbanicity by the Common
   Core switched from being ``metropolitan-centric'' to being
   ``urban-centric'' for Wisconsin from 2006 (Sable
-  \protect\hyperlink{ref-sable}{2009}). We map the codes corresponding
-  codes to match those used by HKR as well as possible, and use the data
-  file from 2006, which has both types of code for all US districts, to
-  confirm that this correspondence is by-and-large working as intended.
-  For a small number of districts/schools with missing urbanicity codes
-  in certain years, we use information from other years to inform
-  urbanicity.}. At the district level, we also use this data to compute
-class size and the size of the student body.
+  \protect\hyperlink{ref-sable}{2009}). We map the corresponding codes
+  to match those used by HKR as well as possible, and use the data file
+  from 2006, which has both types of code for all US districts, to
+  confirm that the pre- and post-2006 correspondence is by-and-large
+  working as intended. For a small number of districts/schools with
+  missing urbanicity codes in certain years, we use information about
+  that entity from other years to inform urbanicity.}\textsuperscript{,}\footnote{Further,
+  the WKCE data does not include a standard deviation field even in
+  those years when the school average scale score is available,
+  precluding any attempt to standardize test scores and put the data
+  here on equal footing with that of HKR.}. At the district level, we
+also use this data to compute class size and the size of the student
+body.
 
 Lastly, we turn to DPI's public data again to get school- and
 district-level performance metrics. While Hanushek, Kain, and Rivkin
@@ -564,7 +581,8 @@ salary data of the form
 where \(\tau_{i,t}\), \(c_{i, t}\) and \(d_{i, t}\) are the tenure,
 certification, and district of teacher \(i\) in year \(t\), and
 \(\varepsilon_{i, t}\) represents unaccounted factors affecting the wage
-(e.g., not all teachers work full time, and many teachers supplement
+(e.g., not all teachers work full time, some teachers split their time
+among duties yielding different pay levels, and many teachers supplement
 their income with additional duties like coaching). Here we consider one
 approach and some empirical lessons for trying to estimate the
 underlying mapping \(y(\tau, c, d)\) from such data.
@@ -588,15 +606,16 @@ pointwise restraints to quantile regression spline estimation
 techniques, and Ng and Maechler (\protect\hyperlink{ref-ng}{2007})
 present an overview of the R package \texttt{cobs} which gives an
 efficient implementation of this approach (COBS standing for Constrained
-B-Splines). The basic idea of quantile regression spline estimation is
-to swap out the standard squared loss function for a quantile-dependent
-weighted absolute loss function to target conditional quantiles instead
-of conditional means. Monotonicity, point, and curvature restrictions
-enter as penalized terms to the objective function; \texttt{cobs}
-expresses this in a fashion which facilitates the application of
-standard linear programming techniques for efficiency, and handles
-internally the issues of knot selection and penalty parameter assignment
-through cross-validation.
+B-Splines; B-splines are computationally-efficient basis functions for
+degree \(k\) splines). The basic idea of quantile regression spline
+estimation is to swap out the standard squared loss function for a
+quantile-dependent weighted absolute loss function to target conditional
+quantiles instead of conditional means. Monotonicity, point, and
+curvature restrictions enter as penalized terms to the objective
+function; \texttt{cobs} expresses this in a fashion which facilitates
+the application of standard linear programming techniques for
+efficiency, and handles internally the issues of knot selection and
+penalty parameter assignment through cross-validation.
 
 We implement and fine-tune this general approach with an eye to being as
 minimally-invasive as possible. The first innovation is required by the
@@ -631,13 +650,19 @@ but also with respect to \(c\) (as, without fail until only very
 recently in Wisconsin, certification was rewarded with a Master's
 premium, typically a percentage increase in wage). One solution would be
 to generalize the implementation of COBS to handle a second dimension by
-simply adding penalty terms along this dimesion. We abandon this
-approach because of the categorical nature of the certification
-dimension -- there are not numerical units to the difference between
-having a Master's vs.~Bachelor's degree; the assignment of such a number
-required by this approach would itself become an implementation
-hyperparameter, meaning that the ultimate fit would itself be sensitive
-to the particular choice of continuous representation.
+simply adding penalty terms along this dimesion\footnote{Not to mention
+  the empirical reality that the two-lane dichotomy is in fact false --
+  it is very common, nearly ubiquitous, for contracts to offer separate
+  lanes for teachers with the same completed certification, but
+  different levels of progress towards completing further certification.
+  As this dimension is impossible to glean from our data, we exclude it
+  from the imputation exercise.}. We abandon this approach because of
+the categorical nature of the certification dimension -- there are not
+numerical units to the difference between having a Master's
+vs.~Bachelor's degree. The assignment of such a number required by this
+approach would itself become an implementation hyperparameter, meaning
+that the ultimate fit would itself be sensitive to the particular choice
+of continuous representation.
 
 Instead, we use a two-step procedure to fit the Bachelor's and Master's
 pay tracks in serial. In the first step, we fit the Bachelor's career
@@ -661,8 +686,8 @@ restriction\footnote{In fact, in reality tenure-wage curves are often
   out and flattens. Nevertheless, the degree of convexity in that
   section of the curve tends to be low, which leads COBS to fit a good
   linear approximation there. The lack of a concavity restriction on the
-  Master's pay track allows fit curves which fit this pattern.},
-concavity improves the goodness of fit notably. Small-sample
+  Master's pay track allows fit curves which fit this pattern for this
+  lane.}, concavity improves the goodness of fit notably. Small-sample
 district-level observations and simple reduced-form regressions of wages
 versus quadratic forms in experience support this shape's validity. A
 variety of contracts obtained from a database for teachers in nearby
@@ -682,13 +707,14 @@ relationship with tenure).
 
 As an illustrative example of the patterns in the data we wish to
 quantify and formalize, we turn briefly now to Milwaukee Public Schools,
-the largest district in Wisconsin. Figure \ref{fig:mwk} depicts key
-moments of the empirical distribution of salary in 4 years at Milwaukee
-Public Schools, broken down by tenure and certification. The central
-lines on each plot (Bachelor's pay track in blue, Master's pay track in
-red) are the empirical median levels of pay, and thus give a rough
-approximation to \(y(\tau, c)\). The dashed-line intervals on either
-side represent the 25th and 75th percentiles.
+the largest district in Wisconsin with roughly 32,387.73 teachers per
+year. Figure \ref{fig:mwk} depicts key moments of the empirical
+distribution of salary in 4 years at Milwaukee Public Schools, broken
+down by tenure and certification. The central lines on each plot
+(Bachelor's pay track in blue, Master's pay track in red) are the
+empirical median levels of pay, and thus give a rough approximation to
+\(y(\tau, c)\). The dashed-line intervals on either side represent the
+25th and 75th percentiles.
 
 Notably, these intervals and the medians themselves tend to get quite
 noisy at later stages in the career, especially for the Bachelor's
@@ -706,9 +732,10 @@ frequently fails to respect the fundamental monotonicity constraint
 discussed above. With respect to tenure, this tends to affect the
 Bachelor's track later in the career as more teachers certify, and the
 Master's track very early in the career before teachers certify. The
-monotonicity with respect to \(c\) of the median wage is maintained here
-for Milwaukee, but this is not always the case; our estimation procedure
-is thus careful to impose these restrictions internally.
+monotonicity with respect to \(c\) of the median wage is mostly
+maintained here for Milwaukee, but this is not always the case; our
+estimation procedure is thus careful to impose these restrictions
+internally.
 
 Second, structural breaks are an important empirical phenomenon in this
 context. Each time a contract is renegotiated at a district, the
@@ -727,13 +754,13 @@ exploration.
 \subsection{Goodness of Fit}\label{goodness-of-fit}
 
 Returning to the motivating example illustrated in Figure \ref{fig:mwk},
-we turn first to the performance in Milwaukee, where, given the relative
-sample size, performance is expected to be very good. Indeed this is the
-case, as seen in Figure \ref{fig:mwk_fit}. The COBS fit has retained all
-the salient features of the empirical median return to experience and
-certification, while simultaneously improving over this nonparametric
-conditional median by ironing out nonmonotonicities found empirically as
-a result of small-sample bias.
+we turn first to the performance in Milwaukee, where, given the
+relatively large sample size, performance is expected to be very good.
+Indeed this is the case, as seen in Figure \ref{fig:mwk_fit}. The COBS
+fit has retained all the salient features of the empirical median return
+to experience and certification, while simultaneously improving over
+this nonparametric conditional median by ironing out nonmonotonicities
+found empirically as a result of small-sample bias.
 
 \begin{figure}[htbp]
 \centering
@@ -759,12 +786,13 @@ curve from dipping below that for the Bachelor's lane.
 \begin{figure}[htbp]
 \centering
 \includegraphics{figures/small_dist_fit-1.pdf}
-\caption{\label{fig:small_fit}Estimation Results for Sparse Districts}
+\caption{\label{fig:small_fit}Estimation Results for Selected Sparse
+Districts}
 \end{figure}
 
 A final check on the validity of the imputation procedure would be to
-compare fit schedules side by side with the true schedules, e.g.~through
-root mean-squared error. As mentioned, this typically a difficult
+compare fit schedules side-by-side with the true schedules, e.g.~through
+root mean-squared error. As mentioned, this is typically a difficult
 undertaking on a mass scale since the true schedules may be hard to come
 by in a parseable electronic format. Usually, a smaller-scale version of
 this exercise would be possible through sampling, say, 5-10\% of
@@ -793,10 +821,10 @@ superb\footnote{In terms of objective measures of the fit, the mean
   This is evidence against the assumption built into the COBS routine of
   0-median errors \(\varepsilon_{i, t}\), and is understandable -- it is
   not uncommon for teachers to earn supplementary pay from coaching or
-  extra teaching duties that would push them above their salary
-  schedule-dictated pay grade. With a more complete set of training
-  data, one could potentially account for this by treating the quantile
-  of the data targeted by COBS (.5 by default, i.e., COBS is
+  extra teaching duties that would push them above their
+  salary-schedule-dictated pay grade. With a more complete set of
+  training data, one could potentially account for this by treating the
+  quantile of the data targeted by COBS (.5 by default, i.e., COBS is
   median-targeted) as a hyperparameter to be fit by cross-validation to
   prevent overfitting (see Stone \protect\hyperlink{ref-stone}{1974} or
   Friedman, Hastie, and Tibshirani
@@ -832,7 +860,7 @@ wage offer). Lastly, the COBS routine is computationally attractive --
 embarassingly parallelizable and implemented very efficiently, the whole
 routine runs in a few minutes.
 
-\section{Results}\label{results}
+\section{Turnover in Wisconsin}\label{turnover-in-wisconsin}
 
 \begin{table}[htbp]
 \centering
@@ -853,12 +881,17 @@ Teacher Experience & Remain in Same School & Change Schools Within District & Sw
 \label{tbl:move_by_exp}
 \end{table}
 
-Table \ref{tbl:move_by_exp} replicates Table 1 of Hanushek, Kain, and
-Rivkin (\protect\hyperlink{ref-hanushek}{2004}) (HKR)\footnote{This and
-  subsequent analyses were greatly facilitated by several facilities of
-  the R programming language, for which due credit must be given to R
-  Core Team (\protect\hyperlink{ref-r}{2016}), RStudio Team
-  (\protect\hyperlink{ref-rstudio}{2017}), Xie
+We move now to the core focus of our analysis, examining the
+distinguishing features of turnover in the teacher labor market in
+Wisconsin. Table \ref{tbl:move_by_exp} replicates Table 1 of Hanushek,
+Kain, and Rivkin (\protect\hyperlink{ref-hanushek}{2004}), and as HKR
+found in Texas, most turnover in Wisconsin is happening within districts
+and out of the profession\footnote{This and subsequent analyses were
+  greatly facilitated by several facilities of the R programming
+  language, for which due credit must be given to R Core Team
+  (\protect\hyperlink{ref-r}{2016}), RStudio Team
+  (\protect\hyperlink{ref-rstudio}{2017}), Dowle and Srinivasan
+  (\protect\hyperlink{ref-dowle}{2017}), Xie
   (\protect\hyperlink{ref-xie}{2016}), Leifeld
   (\protect\hyperlink{ref-leifeld}{2013}), Dahl
   (\protect\hyperlink{ref-dahl}{2009}), Henningsen and Toomet
@@ -866,24 +899,30 @@ Rivkin (\protect\hyperlink{ref-hanushek}{2004}) (HKR)\footnote{This and
   (\protect\hyperlink{ref-zeileis2002}{2002}), Zeileis
   (\protect\hyperlink{ref-zeileis2004}{2004}), Zeileis
   (\protect\hyperlink{ref-zeileis2006}{2006}) and Croissant
-  (\protect\hyperlink{ref-croissant}{2012}).}, and as HKR found in
-Texas, most turnover in Wisconsin is happening within districts and out
-of the profession. In Wisconsin, the fraction of teachers transitioning
-among districts is vanishingly small after a ``burn-in'' period of
-roughly 6 years -- only 1\% of such teachers do so (compared with 3.1\%
-for the comparable group in HKR), but is still relatively higher among
-the youngest teachers -- roughly twice as high for the ``probationary''
-teachers (1-3 years' experience) as for teachers with 7-11 years'
-experience in both states.
+  (\protect\hyperlink{ref-croissant}{2012}).}\textsuperscript{,}\footnote{We
+  also note that some ``turnover'' identified by teachers not appearing
+  at the same school in the following year is in fact spurious -- Public
+  Instruction (\protect\hyperlink{ref-dpi_name_change}{2011}) identifies
+  a number of instances of school districts merging during the timeframe
+  of our analysis and hence disappearing from the data altogether. We
+  take care to reset the district and school switch identifiers off for
+  these 82 teachers if they appear in the newly-formed district in the
+  subsequent period.}. In Wisconsin, the fraction of teachers
+transitioning among districts is vanishingly small after a ``burn-in''
+period of roughly 6 years -- only 1\% of such teachers do so (compared
+with 3.1\% for the comparable group in HKR), but is still relatively
+highest among the youngest teachers -- roughly twice as high for the
+``probationary'' teachers (1-3 years' experience) as for teachers with
+7-11 years' experience in both states.
 
 By contrast, movement patterns within districts in the two states are
 very similar, lending weight to teachers ``earning their stripes''
 within a district to be able to choose the best schools as a privilege
 of seniority. As expected, we also observe a U-shaped pattern in
-teachers exiting Wisconsin public schools, which jives with two types of
-quits. Early-career quitters who change to private schools, change state
-of residence, or change professions, and late-career quitters who retire
--- this is epecially evident among teachers with more than 30 years'
+teachers exiting Wisconsin public schools, which jibes with there being
+two types of quits. Early-career quitters change to private schools,
+change state of residence, or change professions; late-career quitters
+retire -- especially evident among teachers with more than 30 years'
 experience, a group which sees a mass exodus of fully 10 percent of its
 teachers annually. Results not included here break down the exit rates
 by experience level, where this dichotomy is even more dramatic --
@@ -926,31 +965,32 @@ I. All teachers & & & & & & & \\
 \label{tbl:markov}
 \end{sidewaystable}
 
-Table \ref{tbl:markov} replicates HKR Table 2, and supports its most
-important conclusions. HKR argue that there is little support for the
-idea that scores of young teachers are using large urban schools as a
-training ground before ``settling down'' with easier assignments in the
-suburb, based on the general low level of turnover from Large Urban
-districts. We affirm the scarcity of transitions from districts in
-Milwaukee, while also noting that such a path is certainly present, as
-evidenced by the majority of those who do leave Large Urban districts
-ending up in a Surburban district in both settings. HKR also observe
-that the likelihoods of remaining in the same school and of quitting are
-roughly the same for urban and suburban teachers, an observation which
-we can confirm in Wisconsin. We further note that while Table
-\ref{tbl:markov} only presents a cross-sectional picture, the
-career-long trend reaffirms this -- only 3.2\% of teachers starting
-their careers at a large urban district ever work at a suburban
+Moving from the aggregate numbers to begin to examine heterogeneity in
+turnover, Table \ref{tbl:markov} replicates HKR Table 2, and
+reverberates its most important conclusions. HKR argue that there is
+little support for the idea that scores of young teachers are using
+large urban schools as a training ground before ``settling down'' with
+easier assignments in the suburb, based on the general low level of
+turnover from Large Urban districts. We affirm the scarcity of
+transitions from districts in Milwaukee, while also noting that such a
+path is certainly present, as evidenced by the plurality of those who do
+leave Large Urban districts ending up in a Surburban district in both
+settings. HKR also observe that the likelihoods of remaining in the same
+school and of quitting are roughly the same for urban and suburban
+teachers, an observation which we can confirm in Wisconsin. We further
+note that while Table \ref{tbl:markov} only presents a cross-sectional
+picture, the career-long trend reaffirms this -- only 3.2\% of teachers
+starting their careers at a large urban district ever work at a suburban
 district. Lastly, we echo the suggestion of HKR that this phenomenon
-cannot be driven \emph{per se} by demand-side constraints -- in our time
-period of observation, we observe only 1,459 urban teachers change
-districts, whereas 3,211 teachers were hired in suburban districts,
-though of course this does not rule out arguments based for example on
-stricter screening of applicants transferring from urban districts.
+cannot be driven purely by demand-side constraints -- in our time period
+of observation, we observe only 1,459 urban teachers change districts,
+whereas 3,211 teachers were hired in suburban districts, though of
+course this does not rule out arguments based for example on stricter
+screening of applicants transferring from urban districts.
 
 We note, however, that though tales of flight from troubled urban
-districts is apparently anecdotal, it is far from apocryphal. To wit,
-while 50 percent of districts have a net inflow (arrivals less
+districts are apparently anecdotal, they are far from apocryphal. To
+wit, while 50 percent of districts have a net inflow (arrivals less
 departures) of four or fewer teachers (in absolute value), Milwaukee's
 net outflow was 533 teachers, and the five highest-inflow districts, all
 suburbs of Milwaukee or districts adjacent the main university town of
@@ -969,27 +1009,29 @@ Community Types}
 
 As mentioned in the discussion of Table \ref{tbl:move_by_exp}, the major
 difference with respect to quantities observed in Texas appears to be
-driven in differences in the urban landscape between Texas and
-Wisconsin\footnote{We also note a difference in the relative shift in
-  population between the two states -- Texas observed dramatic changes
-  in its community type distribution over the period of study of only 4
-  years, while Wisconsin only saw some movement from Rural to Suburban
-  communities.}. This is supported by the overall similarity of
-magnitudes of transition rates to community types besides Large Urban in
-the two papers. Figure \ref{fig:ti_wi_urb} depicts this difference in
-landscape by comparing the distribution of community types in Texas and
-Wisconsin (bar widths reflect the relative quantity of districts in
-Texas and Wisconsin). While both states are majority-rural, the
-non-rural part of Texas is comparatively urbanized, whereas more than
-90\% of Wisconsin districts are non-urban.
+driven by differences in the urban landscape between Texas and
+Wisconsin\footnote{We also note a difference (as found in Table
+  \ref{tbl:markov}) in the relative shift in population among community
+  types between the two states -- Texas observed dramatic changes in its
+  community type distribution over the period of study of only 4 years,
+  while Wisconsin only saw some movement from Rural to Suburban
+  communities over a longer period of 11 years.}. This is supported by
+the overall similarity of magnitudes of transition rates to community
+types besides Large Urban in the two papers. Figure \ref{fig:ti_wi_urb}
+depicts this difference in landscape by comparing the distribution of
+community types in Texas and Wisconsin in 2010 (bar widths reflect the
+relative quantity of districts in Texas and Wisconsin). While both
+states are majority-rural, the non-rural part of Texas is comparatively
+urbanized, whereas more than 90\% of Wisconsin districts are non-urban.
 
-Returning to Table \ref{tbl:move_by_exp}, we see that, as in HKR, the
+Returning to Table \ref{tbl:markov}, we see that, as in HKR, the
 ``stickiest'' community type is Rural -- over 60\% of Rural teachers
 remain Rural in both papers, and even fewer Rural Wisconsin teachers end
 up in a big city than is the case for Texas. This may reflect the
-similarity in prevalence of rural districts in the two states. Lastly,
-we also find broad similarity in the community type transition patterns
-of younger teachers as compared to all teachers.
+similarity in prevalence of rural districts in the two states and a
+natural similarity in preferences of rural teachers and districts.
+Lastly, we also find that the community type transition patterns of
+younger teachers as compared to all teachers are broadly similar.
 
 \begin{sidewaystable}[htbp]
 \centering
@@ -1011,19 +1053,25 @@ Base year salary (log) & -0.001 & 0.015 & 0.036 & 0.001 & 0.022 & 0.010 & 0.009 
   Percent subsidized lunch & -7.4\% & -3.7\% & -4.4\% & -9.5\% & -7.0\% & -7.6\% & -7.9\% \\ 
    & (1.1\%) & (1.4\%) & (1.7\%) & (0.6\%) & (0.9\%) & (1.0\%) & (0.4\%) \\ 
    \hline
-\multicolumn{8}{c}{\parbox{0.85\linewidth}{\scriptsize{Note: a. Adjusted salary is the residual of log salary by district and experience level on 12 regional indicators, three urbanicity indicators, and the district percentage proficient on the WKCE exam, black, Hispanic, and low income.}}}\\
+\multicolumn{8}{c}{\parbox{0.85\linewidth}{\scriptsize{Note: a. Adjusted salary is the residual of log salary by district and experience level on 12 regional indicators, three urbanicity indicators, and the district percentages proficient on the WKCE exam, black, Hispanic, and low income.}}}\\
 \end{tabular}
 \caption{Average Change in Salary and District Student Characteristics (and Standard Deviations) for Teachers Changing Districts, by Gender and Experience} 
 \label{tbl:change_by_ge}
 \end{sidewaystable}
 
-Table \ref{tbl:change_by_ge} replicates Table 3 of HKR, and confirms its
-most important insights. Raw salary differentials predict teacher
-mobility, but the average pay differential is not on average very large
--- only about \$325, or 1.7\% higher than the counterfactually expected
-wage that would have obtained had the district-switching teacher
-remained in their current district. This premium increases with age for
-both male and female teachers.
+Table \ref{tbl:change_by_ge} replicates Table 3 of HKR, and again
+confirms its most important insights. Raw salary differentials predict
+teacher mobility, but the average pay differential is not on average
+very large -- only about \$325, or 1.7\% higher than the
+counterfactually expected wage that would have obtained had the
+district-switching teacher remained in their current district\footnote{There
+  are 777 teachers in the data who skipped one or more years before
+  reappearing at different school or district (perhaps representing
+  leaves of absence for retraining or re-adjustment). For such teachers,
+  the counterfactual subsequent experience and reference curves are
+  taken from their next year in the data, rather than from simply
+  incrementing their experience by one.}. This premium increases with
+age for both male and female teachers.
 
 \begin{figure}[htbp]
 \centering
@@ -1035,31 +1083,33 @@ Changing Districts throughout Their Careers?}
 One potential explanation of the weakness of the wage results is that
 there simply is not sufficient heterogeneity among available contracts
 to generate mobility incentives. Figure \ref{fig:premia} demonstrates
-that this is not a likely explanation. No matter their current
-experience or certification level, a teacher in a district paying the
-25th percentile of wages for that experience-certification cell would
-gain on average 16.5903732\% by changing to a district at the 75th
-percentile. Especially for younger teachers, this potential gain would
-accumulate annually to become a hefty sum over the course of the career
--- discounting the average annual gain for Master's-certified teachers
-at 6\% and adding over 20 years, this is roughly \$1e+05 on the table;
-results are more dramatic for teachers further in the tails of the wage
+that this is not likely the case. No matter their current experience or
+certification level, a teacher in a district paying the 25th percentile
+of wages for that experience-certification cell would gain on average
+17\% by changing to a district at the 75th percentile. Especially for
+younger teachers, this potential gain would accumulate annually to
+become a hefty sum over the course of the career -- discounting the
+average annual gain for Master's-certified teachers at 6\% and adding
+over 20 years, this means roughly \$100,000 is on the table; results are
+more dramatic for teachers at districts further in the tails of the wage
 distribution.
 
 Attempting to isolate the influence of district characteristics on wage
 effects, HKR suggest comparing the differential leverage of residual
-wages to get a more focused estimate of the association between wages
-and mobility\footnote{HKR mention they failed to adjust the standard
-  errors associated with the adjusted wage differentials to account for
-  the fact that they involve residuals from a regression. We explored
-  accounting for this by bootstrapping the regression through resampling
-  teachers and recalculating residuals, but confirm that little changes
-  as a result.}. We run a similar regression, but evaluate separate
-regressions not just for each level of experience, but also for each
-certification track. This leads to a boost in the overall fraction of
-explained variance from 60\% cited by HKR to 87\% here; as in HKR, other
-included covariates are consistently significant, suggesting their
-strong independent correlation with salary levels.
+wages (the residuals being the unexplained part of a Mincer-type
+regression) to get a more focused estimate of the association between
+wages and mobility\footnote{HKR mention they failed to adjust the
+  standard errors associated with the adjusted wage differentials to
+  account for the fact that they involve residuals from a regression. We
+  explored accounting for this by bootstrapping the regression through
+  resampling teachers and recalculating residuals, but little changes as
+  a result, so we present the naive standard errors for simplicity.}. We
+run a similar regression, but evaluate separate regressions not just for
+each level of experience, but also for each certification track. This
+leads to a boost in the overall fraction of explained variance from 60\%
+cited by HKR to 87\% here; as in HKR, other included covariates are
+consistently significant, suggesting their strong independent
+correlation with salary levels.
 
 Unlike HKR, we find the demographic-independent wage differentials to be
 no more important than the uncontrolled raw wages, with the predicted
@@ -1087,7 +1137,7 @@ it hints at the potentially limited scope of teacher labor market
 policies intended to ameliorate teacher supply problems in hard-to-serve
 districts -- schools can much more easily exert influence over their
 compensation policies than they can dictate their student bodies, but
-the latter is more efficacious (see Fulbeck
+the latter appears more efficacious (see Fulbeck
 \protect\hyperlink{ref-fulbeck}{2014} and Glazerman et al.
 (\protect\hyperlink{ref-glazerman}{2013})).
 
@@ -1126,7 +1176,7 @@ locally; there are typically substantial fixed costs involved in moving
 depend on climate/geography; and so on. As a first pass at exploring how
 long-distance moves may differ in nature from those over short
 distances, we reproduce in Table \ref{tbl:change_far_by_ge} the analysis
-of Table \ref{tbl:change_by_ge} for only those where the distance
+of Table \ref{tbl:change_by_ge} for only those moves where the distance
 between the origin and destination school exceeded 50 miles (a distance
 deemed sufficient to likely entail a physical move rather than simply an
 adjusted commute).
@@ -1136,9 +1186,9 @@ average demographic differentials moderate towards zero, suggesting a
 diminution of the importance of these aspects in this population. The
 noteworthy exception to this trend is among probationary teachers --
 young males experience wage increases in an uprooting move, while young
-females experience further declines for long moves. More detailed data
-would be needed to explore the mechanism at work behind this observation
-(in particular, none of the differences -- male vs.~female or short-
+females experience declines for long moves. More detailed data would be
+needed to explore the mechanism at work behind this observation (in
+particular, none of the differences -- male vs.~female or short-
 vs.~long-distance moves -- have \(p\) values below .05), but one
 explanation is a higher willingness among bachelors to change scenery
 completely, while younger women may tend to be married and moving with
@@ -1155,11 +1205,12 @@ Specialists}\label{supply-and-demand-for-subject-specialists}
 Another source of heterogeneity about which HKR have little to say is
 subject specialty. While it is true that all teachers on a given
 contract are typically paid independently of the subject they teach,
-teaching a hard-to-staff subject should lead to more power in the labor
-market, so we would expect such teachers to transition to more
-attractive positions upon moving. Fully accounting for the demand side
-of labor markets would bestow higher confidence in results which
-ultimately depend on the strategic interaction of the two sides.
+teaching a hard-to-staff subject should lead to more bargaining power in
+the labor market (as such teachers are less easily replaced), so we
+would expect such teachers to transition to more attractive positions
+upon moving. Fully accounting for the demand side of labor markets would
+bestow higher confidence in results which ultimately depend on the
+strategic interaction of the two sides.
 
 We are aided in trying to explore this aspect of the teacher labor
 market by the public availability of annual technical reports from DPI
@@ -1271,20 +1322,20 @@ district with far fewer economically disadvantaged students -- whereas
 73\% of Milwaukee students are eligible, the median percentage in
 suburban schools is 12\%.
 
-This phenomenon is reflected further in the suburban-to-suburban moves,
-which reflect little change in the ethnic/racial makeup of student
-bodies, since a dramatic shift would demonstrate very strong influence
-of this factor. We also find evidence of selection into economically
-better-off districts among suburban switchers, but the magnitude of this
-difference is attenuated with respect to that reported by HKR. We do not
-find patterns of selection on student performance as strongly as was
-found in HKR. This may be a reflection of the crudeness of the
-proficiency measure as compared to the more variable raw scale score
-measures used by HKR. Lastly, we confirm the finding of HKR that there
-does not appear to be evidence that teachers are able to select into the
-more desirable schools within their target districts -- The differences
-in campus-level characteristics are almost identical to the differences
-in district-level characteristics. This is likely a reflection of
+The direction of these effects are preserved among suburban-to-suburban
+moves, suggesting the importance of these factors even in areas where
+there is a wider array demographically of destination districts. We also
+find evidence of selection into economically better-off districts among
+suburban switchers, but the magnitude of this difference is attenuated
+with respect to that reported by HKR. We do not find patterns of
+selection on student performance as strongly as was found in HKR. This
+may be a reflection of the crudeness of the proficiency measure as
+compared to the more variable raw scale score measures used by HKR.
+Lastly, we confirm the finding of HKR that there does not appear to be
+evidence that teachers are able to select into the more desirable
+schools within their target districts -- the differences in campus-level
+characteristics are almost identical to the differences in
+district-level characteristics. This is likely a reflection of
 supply-side constraints, as the choicest appointments in a district may
 be awarded to long-serving serving teachers (promotion from within), as
 well as suburban districts perhaps having only a small number of schools
@@ -1314,21 +1365,21 @@ Percent proficient & 10.7\% & 8.0\% & 2.7\% & 2.2\% \\
 
 HKR examine the state of Texas, which features substantially more ethnic
 heterogeneity than does Wisconsin. As a result, they are better-equipped
-to identify heterogeneity in preferences by teacher ethnicity.
-Wisconsin, however, only has 2,372 of its 49,325 teachers non-white, so
-our results are underpowered relative to HKR. Table
+to identify heterogeneity in preferences by teacher ethnicity. In
+Wisconsin, however, only 2,372 of the 49,325 teachers are non-white, so
+our results are underpowered relative to HKR. For completeness, Table
 \ref{tbl:change_by_eth} presents these results, which parallel HKR Table
 5. Given how few observations we have of black or Hispanic teachers
 switching districts, we eschew any temptation to interpret these
 results. Only black switchers within districts provide enough records to
-interpret meaningfully; in Wisconsin, we find (in contrast to white
-within-district switchers) black teachers tend to migrate to
+interpret meaningfully. In Wisconsin, we find that, in contrast to white
+within-district switchers, black teachers tend to migrate to
 economically better-off and higher-performing schools (white teachers
-only tend to select on the latter characteristic). This could simply be
-a reflection of differences in initial district choice by black
-vis-à-vis white teachers -- the median proficiency at a black teacher's
-first district is 36\% compared to 64\% for white teachers (71\% and
-22\% for reduced lunch eligibility, respectively).
+also select on percentage of black students). This could simply be a
+reflection of differences in initial district choice by black vis-à-vis
+white teachers -- the median proficiency at a black teacher's first
+district is 36\%, compared to 64\% for white teachers (71\% and 22\% for
+reduced lunch eligibility, respectively).
 
 \begin{table}[htbp]
 \centering
@@ -1373,10 +1424,10 @@ their Table 6, which breaks down the three exit rates for each
 (weighted) quartile of the covariate distribution. We replicate that
 analysis here in Table \ref{tbl:change_by_quartile}. Saliently, our
 results for the correlation of school characteristics for
-within-district movers are nearly identical to those found in Texas,
-which gives a stronger indication that we have identified some
-fundamental nonpecuniary mechanisms driving sorting among schools in a
-district.
+within-district movers are qualitatively identical to those found in
+Texas and similar in magnitude, which gives a stronger indication that
+we have identified some fundamental nonpecuniary mechanisms driving
+sorting among schools in a district.
 
 Differences with respect to the results in Texas begin to emerge for the
 other destinations of school leavers (other districts and other
@@ -1396,10 +1447,10 @@ We also find fairly strong patterns in quitting associated with
 subsidized lunch eligibility and with the ethnic makeup of schools, with
 teachers at the most economically advantaged schools 8\% less likely to
 exit teaching; similar numbers obtain for both the quantity of black and
-of Hispanic students. For teachers moving within districts, however, we
-observe the opposite pattern, which is difficult to explain \emph{prima
-facie}, and suggests the presence of confounding factors distorting the
-patterns away from what should be expected.
+of Hispanic students. For teachers moving within districts, we observe
+similar patterns.
+
+\subsection{Regression Results}\label{regression-results}
 
 \begin{sidewaystable}
 \begin{center}
@@ -1449,14 +1500,14 @@ the main coefficients of interest from a simple linear probability
 regression model predicting leaving a district (i.e., either switching
 districts or exiting teaching); this corresponds to HKR Table 7.
 
-By contrast to the strength of such results implied in earlier results,
-the importance of student achievement has dwindled in the regression
-specification, and does not come out as independently significant for
-any subgroup. The same goes for base salary differentials -- in contrast
-to HKR, we find little evidence of an independent influence of salary on
-turnover rates, for males nor for female teachers\footnote{HKR also
-  mention results not printed in their paper suggesting a paucity of
-  evidence suggesting class size is an important factor in teacher
+By contrast to the strength implied in earlier results, the importance
+of student achievement has dwindled in the regression specification, and
+only comes out as independently significant for probationary teachers.
+The same goes for base salary differentials -- in contrast to HKR, the
+evidence we find in favor of an independent influence of salary on
+turnover rates is sparse and concentrated among young teachers\footnote{HKR
+  also mention results not printed in their paper suggesting a paucity
+  of evidence suggesting class size is an important factor in teacher
   turnover decisions; we give tepid support to this statement, as class
   size does indeed appear to be related to turnover, but somewhat weakly
   and only for younger teachers.}. This does not appear to be due to
@@ -1464,24 +1515,26 @@ imprecision -- the magnitude of HKR's standard errors follows closely
 those found for the Wisconsin data, despite our smaller sample sizes.
 
 HKR also found little independent evidence in favor of student economic
-status factoring in to teachers' mobility decisions, but in fact this is
-the source of our strongest effects. As mentioned above, it is possible
-that the crude nature of the proficiency measure is only weakly
-identified, and that some of the unaccounted for part of student
-performance is being captured in other coefficients, especially
-subsidized lunch eligibility. Even more compelling would be to associate
-student performance (and other school/district-level characteristics)
-more finely with the set of students actually faced by a given teacher.
+status factoring in to teachers' mobility decisions, but we find fairly
+consistent support for the importance of subsidized lunch eligibility
+prevalence. As mentioned above, it is possible that the crude nature of
+the proficiency measure is only weakly identified, and that some of the
+unaccounted for part of student performance is being captured in other
+coefficients, especially subsidized lunch eligibility and student race.
+Even more compelling would be to associate student performance (and
+other school/district-level characteristics) more finely with the set of
+students actually faced by a given teacher.
 
 The results in HKR about the differential effects of student body makeup
 are largely similar to those we find in Wisconsin. White and nonwhite
 teachers have opposite and significant correlations between the quantity
 of minority students in their origin district and their likelihood of
-leaving it. These results tend to modulate towards zero with experience,
-regardless of teacher or student race category, and suggest a degree of
-assortative matching on ethnicity among districts in Wisconsin (though
-the patterns for whites differ sharply from those of nonwhites, the
-patterns for black and Hispanic teachers are hard to distinguish).
+leaving it. These differential results tend to modulate towards zero
+with experience, regardless of teacher or student race category, and
+suggest a degree of assortative matching on ethnicity among districts in
+Wisconsin (though the patterns for whites differ sharply from those of
+nonwhites, the patterns for black and Hispanic teachers are hard to
+distinguish).
 
 \begin{sidewaystable}
 \begin{center}
@@ -1523,22 +1576,23 @@ Observations                                & 33,108        & 30,244         & 4
 \end{sidewaystable}
 
 To account in a rudimentary way for district-specific hiring policies,
-HKR move on to their Table 8 which repeats Table 7 with district fixed
-effects. HKR note that the patterns in responsiveness to wages are the
-same, though attenuated; that coefficients involving student ethnicity
-are qualitatively unaffected; and that schools with high achievement
-continue to exhibit lower propensities for turnover. Our results,
-presented in Table \ref{tbl:reg_lpm_fe}, are similar in that they
-closely resemble the results without fixed effects, but with noted
-attenuation and weaker precision.
+HKR move on to their Table 8 which repeats Table 7 (our Table
+\ref{tbl:reg_lpm}) with district fixed effects. HKR note that the
+patterns in responsiveness to wages are the same, though attenuated;
+that coefficients involving student ethnicity are qualitatively
+unaffected; and that schools with high achievement continue to exhibit
+lower propensities for turnover. Our results, presented in Table
+\ref{tbl:reg_lpm_fe}, are similar in that they closely resemble the
+results without fixed effects, but with noted attenuation and weaker
+precision.
 
-The most notable difference relative to table \ref{tbl:reg_lpm} is the
-weakening of results regarding the importance of student characteristics
-for white teachers. While partially attributable to a decline in
-precision, this adjustment suggests much of the discovered correlation
-between student characteristics and exit probability for white teachers
-can be chalked up to district-to-district heterogeneity in preferences
-or hiring policies.
+The most notable difference relative to Table \ref{tbl:reg_lpm} is the
+general weakening of results regarding the importance of student
+characteristics for white teachers. While partially attributable to a
+decline in precision, this adjustment suggests much of the discovered
+correlation between student characteristics and exit probability for
+white teachers can be chalked up to district-to-district heterogeneity
+in preferences or hiring policies.
 
 \begin{sidewaystable}
 \begin{center}
@@ -1586,16 +1640,16 @@ mask important heterogeneity between these two choices. To separate
 these competing exit risks, HKR construct Table 9, which gives
 coefficients from a multinomial logit model with three choices -- remain
 in district, switch districts, and exit teaching. We repeat that
-analysis here, with the caveat that, given the sparsity in racial
-variation present among Wisconsin teachers, we are unable to identify
-the full model specified by HKR and mirrored above in Tables
-\ref{tbl:reg_lpm} and \ref{tbl:reg_lpm_fe}. In light of this, and in
-light of the apparent similarity in Wisconsin in the behavior of black
-and Hispanic teachers described above, we specify the multinomial logit
-model in terms of a more parsimonious coefficient set. Namely, we
-distinguish between white and nonwhite teachers and white and nonwhite
-students (instead of among white, black, and Hispanic students and
-teachers).
+analysis here in Table \ref{tbl:reg_mlogit}, with the caveat that, given
+the sparsity in racial variation present among Wisconsin teachers, we
+are unable to identify the full model specified by HKR and mirrored
+above in Tables \ref{tbl:reg_lpm} and \ref{tbl:reg_lpm_fe}. In light of
+this, and in light of the apparent similarity in Wisconsin in the
+behavior of black and Hispanic teachers described above, we specify the
+multinomial logit model in terms of a more parsimonious coefficient set.
+Namely, we distinguish between white and nonwhite teachers and white and
+nonwhite students (instead of among white, black, and Hispanic students
+and teachers).
 
 We continue to see little evidence favoring the salience of wage
 considerations for Wisconsin teachers; the strongest suggestions found
@@ -1696,7 +1750,7 @@ name as well. A search was done of the data for irregular characters
 resolved (e.g., \texttt{l0is\ a\ dewey} was easy to resolve as being
 \texttt{lois\ a\ dewey}), and this is implemented next.
 
-Next, we create a ``clean'' version of the name fields which strips away
+We then create a ``clean'' version of the name fields which strips away
 all whitespace, initials (lone letters), and punctuation. At this stage,
 all observations which identically match another in the same year from
 the viewpoint of the algorithm -- namely, those that match exactly
@@ -1809,15 +1863,18 @@ teacher, at least 70\% of whom have one ethnicity (or gender), the idea
 being that names like Xu or Gutierrez are strongly associated with a
 particular ethnicity. This type of correction is uncommon enough not to
 warrant an appeal to a more sophisticated approach commonly found in
-natural language processing applications.
+natural language processing applications, e.g.~training a classifier
+such as a random forest (Breiman \protect\hyperlink{ref-breiman}{2001})
+to predict ethnicity as accurately as possible.
 
 Lastly, we synergize the year of birth field for those matched in Steps
 19 or 20 by assigning the one that appears most frequently for each
 teacher; in the case of ties, we use a regression-to-the-mean-type logic
 and assign the year which brings the teacher closer to the median age
 observed in the data. More data-driven approaches (conditioning the
-target median on the teacher's employer, position, year in the data,
-etc.) were again eschewed for expediency.
+target median on the teacher's employer, position, year in the data, or
+using social security data to determine the maximum-likelihood year of
+birth for a given first name, etc.) were again eschewed for expediency.
 
 \subsection{\texorpdfstring{Validity Check:
 \texttt{file\_number}}{Validity Check: file\_number}}\label{validity-check-file_number}
@@ -1870,6 +1927,10 @@ Boyd, Donald, Hamilton Lankford, Susanna Loeb, and James Wyckoff. 2005.
 ``Explaining the Short Careers of High-Achieving Teachers in Schools
 with Low-Performing Students.'' \emph{The American Economic Review} 95
 (2). American Economic Association: 166--71.
+
+\hypertarget{ref-breiman}{}
+Breiman, Leo. 2001. ``Random Forests.'' \emph{Machine Learning} 45 (1).
+Springer: 5--32.
 
 \hypertarget{ref-chettyI}{}
 Chetty, Raj, John N Friedman, and Jonah E Rockoff. 2014a. ``Measuring
@@ -2027,9 +2088,13 @@ Ng, Pin, and Martin Maechler. 2007. ``A Fast and Efficient
 Implementation of Qualitatively Constrained Quantile Smoothing
 Splines.'' \emph{Statistical Modelling} 7 (4). SAGE: 315--28.
 
+\hypertarget{ref-dpi_name_change}{}
+Public Instruction, Wisconsin Department of. 2011. ``School District
+Name Changes - Since 1994.''
+\url{dpi.wi.gov/sites/default/files/imce/sms/doc/rg_sdnamechanges.doc}.
+
 \hypertarget{ref-dpi_errata}{}
-Public Instruction, Wisconsin Department of. 2017a. ``Data Errata - Data
-Changes After Dpi Publication.''
+---------. 2017a. ``Data Errata - Data Changes After Dpi Publication.''
 \url{https://dpi.wi.gov/cst/data-collections/data-errata}.
 
 \hypertarget{ref-dpi}{}
