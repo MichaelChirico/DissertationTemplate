@@ -24,5 +24,6 @@ cp "$ch3wd"/round_two_paper.tex "$ch3wd"/references.bib ./full_chapters
 mv full_chapters/references.bib full_chapters/references_procrastination.bib
 # no figures in chapter 3
 
-# ASSEMBLE
+# ASSEMBLE & BUILD
 Rscript body_extractor.R
+pdflatex dissertation.tex

@@ -122,26 +122,31 @@ ch1 = gsub('paper(, there| of restricting|\\. Data)',
 ###############################################################################
 #                                  CHAPTER 2                                  #
 ###############################################################################
-# ch2 = readLines('full_chapters/sail_paper.tex')
-# 
-# body_start = grep('\\TAG{BEGIN_BODY}', ch2, fixed = TRUE) + 1L
-# body_end = grep('\\TAG{END_BODY}', ch2, fixed = TRUE) - 1L
-# ch2 = ch2[body_start:body_end]
-# 
-# ch2 = gsub('\\\\protect\\\\hyperlink\\{ref-([^}]*)\\}\\{[0-9]{4}\\}',
-#            '\\\\citeyear{\\1}', ch2)
-# 
-# ch2 = add_adjust(ch2, 'tbl:desc', .9)
-# 
-# ch2 = gsub('\\section{Results}\\label{results}',
-#            '\\section{Results}\\label{results-ch1}',
-#            ch2, fixed = TRUE)
-# ch2 = gsub('\\section{Literature Review}\\label{literature-review}',
-#            '\\section{Literature Review}\\label{literature-review-ch1}',
-#            ch2, fixed = TRUE)
-# 
-# #manually identified just one
-# ch2 = gsub('This paper focuses', 'This chapter focuses', ch2, fixed = TRUE)
+ch2 = readLines('full_chapters/sail_paper.tex')
+
+body_start = grep('\\TAG{BEGIN_BODY}', ch2, fixed = TRUE) + 1L
+body_end = grep('\\TAG{END_BODY}', ch2, fixed = TRUE) - 1L
+ch2 = ch2[body_start:body_end]
+
+ch2 = gsub('\\\\protect\\\\hyperlink\\{ref-([^}]*)\\}\\{[0-9]{4}\\}',
+           '\\\\citeyear{\\1}', ch2)
+
+ch2 = add_adjust(ch2, 'tbl:desc', .9)
+
+ch2 = gsub('\\section{Results}\\label{results}',
+           '\\section{Results}\\label{results-ch1}',
+           ch2, fixed = TRUE)
+ch2 = gsub('\\section{Literature Review}\\label{literature-review}',
+           '\\section{Literature Review}\\label{literature-review-ch1}',
+           ch2, fixed = TRUE)
+
+#re-scale figure manually
+idx = find_nearest(ch2, 'includegraphics',
+                   grep('\\label{fig:rand_fwk}', ch2, fixed = TRUE), '-')
+ch2[idx] = gsub('includegraphics', 'includegraphics[scale=.8]', ch2[idx])
+
+#manually identified just one
+ch2 = gsub('This paper focuses', 'This chapter focuses', ch2, fixed = TRUE)
 
 ###############################################################################
 #                                  CHAPTER 3                                  #
@@ -173,7 +178,7 @@ ch3 = gsub('in the paper', 'in this chapter', ch3)
 #do this in separate section so you can more easily sandbox all the chapters
 #  without overwriting the file in the content folder accidentally
 writeLines(ch1, 'content/turnover.tex')
-# writeLines(ch2, 'content/turnover.tex')
+writeLines(ch2, 'content/sail.tex')
 writeLines(ch3, 'content/procrastination.tex')
 
 ###############################################################################
