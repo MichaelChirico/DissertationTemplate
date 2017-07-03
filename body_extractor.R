@@ -64,6 +64,15 @@ scriptsize_caption = function(x, lbl) {
   x
 }
 
+## I prefer to use we always in academic writing,
+##   but was requested to switch to I in the dissertation
+we_to_i = function(x) {
+  x = gsub('\\b[Ww]e\\b', 'I', x)
+  x = gsub('\\bour\\b', 'my', x)
+  x = gsub('\\bOur\\b', 'My', x)
+  x
+}
+
 ###############################################################################
 #                                  CHAPTER 1                                  #
 ###############################################################################
@@ -94,6 +103,7 @@ ch1 = ch1[body_start:body_end]
 ch1 = convert_sideways(ch1, 'tbl:reg_lpm')
 ch1 = convert_sideways(ch1, 'tbl:reg_lpm_fe')
 ch1 = convert_sideways(ch1, 'tbl:reg_mlogit')
+ch1 = convert_sideways(ch1, 'tbl:reg_lpm_fe_rel')
 
 # >30 was compiling fine in my other document, must be
 #   of the packages in the dissertation wasn't playing nice
@@ -103,6 +113,7 @@ ch1 = add_adjust(ch1, 'tbl:change_by_quartile', .9)
 ch1 = add_adjust(ch1, 'tbl:reg_lpm', .85)
 ch1 = add_adjust(ch1, 'tbl:reg_lpm_fe', .85)
 ch1 = add_adjust(ch1, 'tbl:reg_mlogit', .9)
+ch1 = add_adjust(ch1, 'tbl:reg_lpm_fe_rel', .9)
 
 ch1 = scriptsize_caption(ch1, 'tbl:change_by_quartile')
 ch1 = scriptsize_caption(ch1, 'tbl:reg_lpm')
@@ -119,6 +130,8 @@ ch1 = gsub('\\section{Literature Review}\\label{literature-review}',
 ch1 = gsub('paper(, there| of restricting|\\. Data)', 
            'chapter\\1', ch1)
 
+ch1 = we_to_i(ch1)
+
 ###############################################################################
 #                                  CHAPTER 2                                  #
 ###############################################################################
@@ -134,10 +147,10 @@ ch2 = gsub('\\\\protect\\\\hyperlink\\{ref-([^}]*)\\}\\{[0-9]{4}\\}',
 ch2 = add_adjust(ch2, 'tbl:desc', .9)
 
 ch2 = gsub('\\section{Results}\\label{results}',
-           '\\section{Results}\\label{results-ch1}',
+           '\\section{Results}\\label{results-ch2}',
            ch2, fixed = TRUE)
 ch2 = gsub('\\section{Literature Review}\\label{literature-review}',
-           '\\section{Literature Review}\\label{literature-review-ch1}',
+           '\\section{Literature Review}\\label{literature-review-ch2}',
            ch2, fixed = TRUE)
 
 #re-scale figure manually
@@ -147,6 +160,8 @@ ch2[idx] = gsub('includegraphics', 'includegraphics[scale=.8]', ch2[idx])
 
 #manually identified just one
 ch2 = gsub('This paper focuses', 'This chapter focuses', ch2, fixed = TRUE)
+
+ch2 = we_to_i(ch2)
 
 ###############################################################################
 #                                  CHAPTER 3                                  #
@@ -171,6 +186,8 @@ ch3 = add_adjust(ch3, 'sh_rev', .9, '+')
 
 # only one manually-identified of reference as a paper
 ch3 = gsub('in the paper', 'in this chapter', ch3)
+
+ch3 = we_to_i(ch3)
 
 ###############################################################################
 #                                BUILD CHAPTERS                               #
