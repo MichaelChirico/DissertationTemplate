@@ -83,7 +83,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{May 14, 2017}
+  \date{May 25, 2017}
 
 \usepackage{theapa}
 \usepackage{array}
@@ -1593,6 +1593,73 @@ decline in precision, this adjustment suggests much of the discovered
 correlation between student characteristics and exit probability for
 white teachers can be chalked up to district-to-district heterogeneity
 in preferences or hiring policies.
+
+\subsubsection{Local Wage Ratio}\label{local-wage-ratio}
+
+\begin{sidewaystable}
+\begin{center}
+\begin{tabular}{l c c c c c }
+\hline
+ & \multicolumn{4}{c}{Teacher Experience} \\ \cline{2-6}
+ & 1-3 years & 4-6 years & 7-11 years & 12-30 years & >30 years \\
+\hline
+Local Relative Wage                         & $0.00$       & $0.01$      & $-0.02$       & $-0.02^{**}$ & $-0.01$  \\
+                                            & $(0.03)$     & $(0.02)$    & $(0.02)$      & $(0.01)$     & $(0.01)$ \\
+Local Relative Wage * female                & $0.00$       & $0.00$      & $0.03$        & $0.01^{**}$  & $0.01$   \\
+                                            & $(0.03)$     & $(0.02)$    & $(0.02)$      & $(0.00)$     & $(0.01)$ \\
+Campus average student characteristics      &              &             &               &              &          \\
+\quad Percent proficient                    & $-0.03$      & $0.04$      & $-0.01$       & $-0.01$      & $-0.01$  \\
+                                            & $(0.06)$     & $(0.04)$    & $(0.02)$      & $(0.01)$     & $(0.00)$ \\
+\quad Percent eligible for subsidized lunch & $-0.12^{*}$  & $-0.00$     & $-0.02$       & $0.00$       & $-0.00$  \\
+                                            & $(0.06)$     & $(0.04)$    & $(0.02)$      & $(0.01)$     & $(0.01)$ \\
+\quad Percent Black                         & $0.18$       & $0.31^{*}$  & $0.21$        & $0.08$       & $0.00$   \\
+                                            & $(0.23)$     & $(0.15)$    & $(0.13)$      & $(0.05)$     & $(0.01)$ \\
+\quad Percent Hispanic                      & $0.09$       & $0.09$      & $-0.06$       & $-0.02$      & $0.00$   \\
+                                            & $(0.13)$     & $(0.10)$    & $(0.06)$      & $(0.02)$     & $(0.02)$ \\
+Interactions                                &              &             &               &              &          \\
+\quad Black * percent Black                 & $-0.11^{**}$ & $-0.05^{*}$ & $-0.04^{***}$ & $0.00$       & $0.00$   \\
+                                            & $(0.04)$     & $(0.02)$    & $(0.01)$      & $(0.01)$     & $(0.00)$ \\
+\quad Hispanic * percent Black              & $-0.06^{*}$  & $-0.06^{*}$ & $-0.08^{*}$   & $-0.00$      & $0.00$   \\
+                                            & $(0.03)$     & $(0.02)$    & $(0.04)$      & $(0.00)$     & $(0.00)$ \\
+\quad Black * percent Hispanic              & $0.25$       & $0.25^{**}$ & $0.12$        & $0.00$       & $-0.00$  \\
+                                            & $(0.14)$     & $(0.08)$    & $(0.06)$      & $(0.04)$     & $(0.00)$ \\
+\quad Hispanic * percent Hispanic           & $0.12$       & $0.06$      & $0.15$        & $0.02^{**}$  & $0.00$   \\
+                                            & $(0.11)$     & $(0.07)$    & $(0.12)$      & $(0.01)$     & $(0.01)$ \\
+\hline
+Observations                                & 27,045        & 25,285       & 36,364         & 83,825        & 10,084    \\
+\hline
+\multicolumn{6}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Estimated Effects of Relative Local Wage and Student Demographic Characteristics on the Probability that Teachers Leave School Districts with District Fixed, by Experience (linear probability models; Huber-White standard errors in parentheses)}
+\label{tbl:reg_lpm_fe_rel}
+\end{center}
+\end{sidewaystable}
+
+Perhaps a better measure of the influence of a teacher's wage on their
+propensity to move is their potential gains from changing to nearby
+districts. Table \ref{tbl:reg_lpm_fe_rel} presents results of a
+specification paralleling that in Table \ref{tbl:reg_lpm_fe}, save for
+the replacement of the initial Bachelor's salary as a predictor with a
+measure of a teacher's local relative wage. Specifically, the local
+relative wage is defined as the ratio of a teacher's next scheduled wage
+to the wage ceiling at districts within 50 miles of their current
+district (excluding their own) The wage ceiling is calculated as the
+maximum wage at the teacher's subsequent level of experience and
+certification in such districts. If this measure exceeds one, a teacher
+is getting paid more for their current qualifications than is possible
+locally; otherwise, they stand to gain in pay from switching to at least
+one school locally. This relative local wage measure is an even poorer
+predictor of teacher churn than are local wage levels. Table
+\ref{tbl:reg_lpm_fe_rel} bolsters evidence that student characteristics
+are more important than wage differentials for teachers considering
+changing districts\footnote{Some of the other coefficients in Table
+  \ref{tbl:reg_lpm_fe_rel} have changed somewhat substantially relative
+  to those found in Table \ref{tbl:reg_lpm_fe}. This is largely
+  attributable to a different subpopulation of teachers included in the
+  results, as evidenced by the change in sample size between the two
+  tables. This reflects differential missingness of the wage measures.
+  The wage coefficients are qualitatively robust to selecting a fixed
+  population to estimate the models for the two tables.}.
 
 \begin{sidewaystable}
 \begin{center}
